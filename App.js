@@ -44,10 +44,11 @@ const LoginPage = () => {
           height: height,
           resizeMode: "cover",
           position: "absolute",
+          opacity:0.4,
         }}
         source={require("./images/2.webp")}
       />
-      <Image
+      <Image 
         source={require("./images/park1.png")}
         style={{ width: 900, height: 200 }}
       />
