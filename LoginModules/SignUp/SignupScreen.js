@@ -45,36 +45,26 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
-                placeholder="Password"
+                placeholder="Phone Number"
                 onFocus={() => setPasswordIsFocused(true)}
                 onBlur={() => setPasswordIsFocused(false)}
                 secureTextEntry={true}
                 onChangeText={(text) => setPassword(text)}
                 value={password}
             />
-            <View style={styles.forgotPassword}>
-                <Pressable onPress={()=>console.log("Forgot Password pressed")}>
-                    <Text>Forgot Password?</Text>
-                </Pressable>
-                
-            </View>
+           
 
             <View>
 
             <MyButton
-                title="Sign In"
+                title="Sign-Up"
                 onPress={() => handleLogin()}
                 buttonStyle={styles.button}
                 />
             </View>
         </View>
     </View>
-    <View style={styles.signUpPart}>
-        <Text>Don't have an account? </Text>
-        <Pressable onPress={()=>console.log("sign up pressed")}>
-        <Text style={styles.signUp}>Sign Up</Text>
-        </Pressable>
-    </View>
+   
     </>
   );
 };
