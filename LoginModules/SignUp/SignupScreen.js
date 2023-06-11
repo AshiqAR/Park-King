@@ -52,7 +52,12 @@ const SignupScreen = () => {
                 onChangeText={(text) => setPassword(text)}
                 value={password}
             />
-           
+           <View style={styles.signUpPart}>
+        <Text>Verify your phone number: </Text>
+        <Pressable onPress={()=>console.log("Verify phone number")}>
+        <Text style={styles.signUp}>Send OTP</Text>
+        </Pressable>
+    </View>
 
             <View>
 
