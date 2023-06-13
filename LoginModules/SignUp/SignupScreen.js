@@ -16,10 +16,12 @@ import {styles} from './styles.js'
 const SignupScreen = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [phonenumber, setPhonenumber] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [phonenumber, setPhoneNumber] = useState("");
     const [usernameIsFocused, setUsernameIsFocused] = useState(false);
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
     const [phonenumberIsFocused, setPhoneNumberIsFocused] = useState(false);
+    const [confirmPasswordIsFocused, setConfirmPasswordIsFocused] = useState(false);
 
     const handleLogin = () => {
         if (username === " " && password === " "&&phonenumber===" ") {
@@ -39,7 +41,7 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,usernameIsFocused && styles.inputIsFocused]}
-                placeholder="Username"
+                placeholder="Name"
                 onChangeText={(text) => setUsername(text)}
                 onFocus={() => setUsernameIsFocused(true)}
                 onBlur={() => setUsernameIsFocused(false)}
@@ -47,7 +49,7 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,phonenumberIsFocused && styles.inputIsFocused]}
-                placeholder="PhoneNumber"
+                placeholder="Phone Number"
                 onChangeText={(text) => setPhoneNumber(text)}
                 onFocus={() => setPhoneNumberIsFocused(true)}
                 onBlur={() => setPhoneNumberIsFocused(false)}
@@ -55,12 +57,21 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
-                placeholder=" New Password"
+                placeholder="Enter Password"
                 onFocus={() => setPasswordIsFocused(true)}
                 onBlur={() => setPasswordIsFocused(false)}
                 secureTextEntry={true}
                 onChangeText={(text) => setPassword(text)}
                 value={password}
+            />
+            <TextInput
+                style={[styles.input,confirmPasswordIsFocused && styles.inputIsFocused]}
+                placeholder="Confirm Password"
+                onFocus={() => setConfirmPasswordIsFocused(true)}
+                onBlur={() => setConfirmPasswordIsFocused(false)}
+                secureTextEntry={true}
+                onChangeText={(text) => setConfirmPassword(text)}
+                value={confirmPassword}
             />
            <View style={styles.signUpPart}>
         <Text>Verify your phone number: </Text>
