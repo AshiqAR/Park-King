@@ -19,12 +19,13 @@ const SignupScreen = () => {
     const [phonenumber, setPhonenumber] = useState("");
     const [usernameIsFocused, setUsernameIsFocused] = useState(false);
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
+    const [phonenumberIsFocused, setPhoneNumberIsFocused] = useState(false);
 
     const handleLogin = () => {
         if (username === " " && password === " "&&phonenumber===" ") {
           Alert.alert("Fields cannot be empty", "Welcome to the ParKing!");
         } else {
-          Alert.alert("Sign in Failed", "Invalid username or password");
+          Alert.alert("Sign Up Failed", "Invalid username or password");
         }
     };
 
@@ -45,7 +46,7 @@ const SignupScreen = () => {
                 value={username}
             />
             <TextInput
-                style={[styles.input,usernameIsFocused && styles.inputIsFocused]}
+                style={[styles.input,phonenumberIsFocused && styles.inputIsFocused]}
                 placeholder="PhoneNumber"
                 onChangeText={(text) => setPhoneNumber(text)}
                 onFocus={() => setPhoneNumberIsFocused(true)}
