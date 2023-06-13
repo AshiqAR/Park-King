@@ -16,12 +16,13 @@ import {styles} from './styles.js'
 const SignupScreen = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [phonenumber, setPhonenumber] = useState("");
     const [usernameIsFocused, setUsernameIsFocused] = useState(false);
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
 
     const handleLogin = () => {
-        if (username === "admin" && password === "admin") {
-          Alert.alert("Sign In Successful", "Welcome to the ParKing!");
+        if (username === " " && password === " "&&phonenumber===" ") {
+          Alert.alert("Fields cannot be empty", "Welcome to the ParKing!");
         } else {
           Alert.alert("Sign in Failed", "Invalid username or password");
         }
@@ -44,8 +45,16 @@ const SignupScreen = () => {
                 value={username}
             />
             <TextInput
+                style={[styles.input,usernameIsFocused && styles.inputIsFocused]}
+                placeholder="PhoneNumber"
+                onChangeText={(text) => setPhoneNumber(text)}
+                onFocus={() => setPhoneNumberIsFocused(true)}
+                onBlur={() => setPhoneNumberIsFocused(false)}
+                value={phonenumber}
+            />
+            <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
-                placeholder="Phone Number"
+                placeholder=" New Password"
                 onFocus={() => setPasswordIsFocused(true)}
                 onBlur={() => setPasswordIsFocused(false)}
                 secureTextEntry={true}
