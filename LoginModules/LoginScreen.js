@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import MyButton from "../MyButton.js";
 import {
   View,
@@ -13,19 +14,23 @@ import {
 } from "react-native";
 import {styles} from './styles.js'
 
-const LoginScreen = () => {
-    const [username, setUsername] = useState("");
+const LoginScreen = ({navigation}) => {
+    const [mobileNumber, setmobileNumber] = useState("");
     const [password, setPassword] = useState("");
-    const [usernameIsFocused, setUsernameIsFocused] = useState(false);
+    const [mobileNumberIsFocused, setmobileNumberIsFocused] = useState(false);
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
 
     const handleLogin = () => {
-        if (username === "admin" && password === "admin") {
+        if (mobileNumber === "9999" && password === "admin") {
           Alert.alert("Sign In Successful", "Welcome to the ParKing!");
         } else {
-          Alert.alert("Sign in Failed", "Invalid username or password");
+          Alert.alert("Sign in Failed", "Invalid mobileNumber or password");
         }
     };
+
+    // const navigateToSignUp = () => {
+    //   navigation.navigate("SignUp/SignupScreen.js");
+    // };
 
   return (
     <>
@@ -36,12 +41,12 @@ const LoginScreen = () => {
                 style={{ width: 700, height: 200 }}
             />
             <TextInput
-                style={[styles.input,usernameIsFocused && styles.inputIsFocused]}
-                placeholder="Username"
-                onChangeText={(text) => setUsername(text)}
-                onFocus={() => setUsernameIsFocused(true)}
-                onBlur={() => setUsernameIsFocused(false)}
-                value={username}
+                style={[styles.input,mobileNumberIsFocused && styles.inputIsFocused]}
+                placeholder="Mobile Number"
+                onChangeText={(text) => setmobileNumber(text)}
+                onFocus={() => setmobileNumberIsFocused(true)}
+                onBlur={() => setmobileNumberIsFocused(false)}
+                value={mobileNumber}
             />
             <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
@@ -71,7 +76,7 @@ const LoginScreen = () => {
     </View>
     <View style={styles.signUpPart}>
         <Text>Don't have an account? </Text>
-        <Pressable onPress={()=>console.log("sign up pressed")}>
+        <Pressable onPress={() => navigation.navigate('SignUp')}>
         <Text style={styles.signUp}>Sign Up</Text>
         </Pressable>
     </View>

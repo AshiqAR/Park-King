@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MyButton from "../../MyButton.js";
+import MyButton from "../MyButton.js";
 import {
   View,
   Text,
@@ -14,20 +14,20 @@ import {
 import {styles} from './styles.js'
 
 const SignupScreen = () => {
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [phonenumber, setPhoneNumber] = useState("");
-    const [usernameIsFocused, setUsernameIsFocused] = useState(false);
+    const [nameIsFocused, setNameIsFocused] = useState(false);
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
     const [phonenumberIsFocused, setPhoneNumberIsFocused] = useState(false);
     const [confirmPasswordIsFocused, setConfirmPasswordIsFocused] = useState(false);
 
     const handleLogin = () => {
-        if (username === " " && password === " "&&phonenumber===" ") {
+        if (name === " " && password === " "&&phonenumber===" ") {
           Alert.alert("Fields cannot be empty", "Welcome to the ParKing!");
         } else {
-          Alert.alert("Sign Up Failed", "Invalid username or password");
+          Alert.alert("Sign Up Failed", "Invalid name or password");
         }
     };
 
@@ -36,16 +36,16 @@ const SignupScreen = () => {
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
-                source={require("../images/park2.png")}
+                source={require("./images/park2.png")}
                 style={{ width: 700, height: 200 }}
             />
             <TextInput
-                style={[styles.input,usernameIsFocused && styles.inputIsFocused]}
+                style={[styles.input,nameIsFocused && styles.inputIsFocused]}
                 placeholder="Name"
-                onChangeText={(text) => setUsername(text)}
-                onFocus={() => setUsernameIsFocused(true)}
-                onBlur={() => setUsernameIsFocused(false)}
-                value={username}
+                onChangeText={(text) => setName(text)}
+                onFocus={() => setNameIsFocused(true)}
+                onBlur={() => setNameIsFocused(false)}
+                value={name}
             />
             <TextInput
                 style={[styles.input,phonenumberIsFocused && styles.inputIsFocused]}

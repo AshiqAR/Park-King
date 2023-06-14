@@ -3,24 +3,19 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
 
 container: {
-    // flex: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    display: "flex",
+    flex: 1,
+    alignItems: 'center',
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
    
 },
 card: {
-    display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "space-around",
-    backgroundColor: "azure",
+    backgroundColor: "aliceblue",
     width: "90%",
-    // borderColor: "green",
-    // borderWidth: 1,
     borderRadius: 5,
     shadowColor: "black",
     shadowRadius: 3,
