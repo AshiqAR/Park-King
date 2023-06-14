@@ -6,13 +6,14 @@ import {
   Text,
   Image,
   StyleSheet,
+  TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
     Pressable,
   TextInput,
   Alert,
 } from "react-native";
-import {styles} from './styles.js'
+import {styles} from '../styles/loginStyles.js'
 
 const LoginScreen = ({navigation}) => {
     const [mobileNumber, setmobileNumber] = useState("");
@@ -57,12 +58,12 @@ const LoginScreen = ({navigation}) => {
                 onChangeText={(text) => setPassword(text)}
                 value={password}
             />
-            <View style={styles.forgotPassword}>
-                <Pressable onPress={()=>console.log("Forgot Password pressed")}>
+            {/* <View style={styles.forgotPassword}>
+                <TouchableOpacity onPress={()=>console.log("Forgot Password pressed")}>
                     <Text>Forgot Password?</Text>
-                </Pressable>
+                </TouchableOpacity>
                 
-            </View>
+            </View> */}
 
             <View>
 

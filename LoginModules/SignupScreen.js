@@ -11,7 +11,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import {styles} from './styles.js'
+import {styles} from '../styles/loginStyles.js'
 
 const SignupScreen = () => {
     const [name, setName] = useState("");
@@ -73,17 +73,16 @@ const SignupScreen = () => {
                 onChangeText={(text) => setConfirmPassword(text)}
                 value={confirmPassword}
             />
-           <View style={styles.signUpPart}>
-        <Text>Verify your phone number: </Text>
-        <Pressable onPress={()=>console.log("Verify phone number")}>
-        <Text style={styles.signUp}>Send OTP</Text>
-        </Pressable>
-    </View>
+            {/* <View style={styles.signUpPart}>
+              <Text>Verify your phone number: </Text>
+              <Pressable onPress={()=>console.log("Verify phone number")}>
+              <Text style={styles.signUp}>Send OTP</Text>
+              </Pressable>
+            </View> */}
 
-            <View>
-
+          <View>
             <MyButton
-                title="Sign-Up"
+                title="Sign Up"
                 onPress={() => handleLogin()}
                 buttonStyle={styles.button}
                 />
