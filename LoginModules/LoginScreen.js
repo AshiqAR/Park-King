@@ -23,9 +23,10 @@ const LoginScreen = ({navigation}) => {
 
     const handleLogin = () => {
         if (mobileNumber === "9999" && password === "admin") {
-          Alert.alert("Sign In Successful", "Welcome to the ParKing!");
+          // Alert.alert("Sign In Successful", "Welcome to the ParKing!");
+          navigation.navigate("Home");
         } else {
-          Alert.alert("Sign in Failed", "Invalid mobileNumber or password");
+          Alert.alert("Sign in Failed", "Invalid Mobile Number or password");
         }
     };
 

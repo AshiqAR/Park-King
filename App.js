@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 import LoginScreen from './LoginModules/LoginScreen';
 import SignupScreen from './LoginModules/SignupScreen';
+import HomeScreen from './HomeScreen/HomeScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -14,8 +15,10 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator  screenOptions={{headerShown: false}}>
+        
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignupScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
