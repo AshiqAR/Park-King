@@ -17,10 +17,28 @@ import {
 } from "react-native";
 
 const HomeScreen = ({navigation}) => {
+
   return (
     <>
+       <Image
+                source={require("./images/park2.png")}
+                style={ styles.containerlogo}
+            />
       <View style={styles.container}>
+        <View style={styles.card}>
         <MapScreen></MapScreen>
+        <MyButton
+                title="I am a parking lot owner"
+                onPress={() => handleLogin()}
+                buttonStyle={styles.button}
+                
+                />
+        <MyButton
+                title="I am looking for parking space"
+                onPress={() => handleLogin()}
+                buttonStyle={styles.button}
+                />
+      </View>
       </View>
     </>
   );
