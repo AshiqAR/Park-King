@@ -18,7 +18,7 @@ function App() {
         
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignupScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: true, headerTitle: "Park King"}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

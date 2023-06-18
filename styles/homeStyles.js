@@ -2,19 +2,14 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container:{
-        flex: 1,
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        
+        // flex: 1,
+        // flexDirection: "column",
+        // alignItems: "center",
+        // justifyContent: "space-around",
     },
-    containerlogo:{
-        flex: 1,
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        width:445,
-        height:10,
+    map: {
+        width: '100%',
+        height: '100%',
     },
     button: {
         backgroundColor: 'green',
@@ -31,20 +26,24 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    card: {
-        display: "flex",
+    bottomBar: {
+        position: "absolute",
+        bottom: 0,
+        width: "100%",
+        flex: 1,
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-around",
-        backgroundColor: "#fff",
-        width: "90%",
+        backgroundColor: "rgba(255, 255, 255,1)",
+        // width: "90%",
         // borderColor: "green",
         // borderWidth: 1,
-        borderRadius: 5,
+        // borderRadius: 5,
+        // height: "20%",
         shadowColor: "black",
         shadowRadius: 3,
         shadowOpacity: 1,
-        paddingBottom: 20,
-        elevation: 3,
+        // paddingBottom: 20,
+        // elevation: 3,
     },
 })

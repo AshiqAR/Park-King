@@ -8,6 +8,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView ,
   Keyboard,
     Pressable,
   TextInput,
@@ -22,9 +23,13 @@ const LoginScreen = ({navigation}) => {
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
 
     const handleLogin = () => {
-        if (mobileNumber === "9999" && password === "admin") {
-          // Alert.alert("Sign In Successful", "Welcome to the ParKing!");
+        if (mobileNumber === "0" && password === "0") {
+          Alert.alert("Sign In Successful", "Welcome to the ParKing!");
           navigation.navigate("Home");
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Home" }],
+          });
         } else {
           Alert.alert("Sign in Failed", "Invalid Mobile Number or password");
         }
@@ -49,6 +54,7 @@ const LoginScreen = ({navigation}) => {
                 onFocus={() => setmobileNumberIsFocused(true)}
                 onBlur={() => setmobileNumberIsFocused(false)}
                 value={mobileNumber}
+                keyboardType="numeric"
             />
             <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
