@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {styles} from '../styles/homeStyles'
 import MapScreen from "../MapScreen";
 import MapView ,{Marker} from "react-native-maps";
-import MarkLocations from "./MarkLocations";
+import locs from "./MarkLocations";
 
 import MyButton from "../MyButton.js";
 import {
@@ -19,20 +19,6 @@ import {
 } from "react-native";
 
 const HomeScreen = ({navigation}) => {
-  const markers = [
-    {
-      latitude: 8.434534,
-      longitude: 77.031217,
-      title: 'jijis Parking Lot',
-      subtitle: '20 lots available'
-    },
-    {
-      latitude: 8.500730,
-      longitude: 77.081300,
-      title: 'happy Lots',
-      subtitle: '5 lots available'
-    },
-  ];
 
   return (
     <>
@@ -40,14 +26,14 @@ const HomeScreen = ({navigation}) => {
         <MapView initialRegion={{latitude: 8.434534, longitude: 77.031217, latitudeDelta: 0.2, longitudeDelta: 0.5}} showsMyLocationButton={true} style={styles.map}>
           
 
-        {markers.map((marker, index) => (
+        {locs.map((marker, index) => (
           <Marker
             key={index}
             coordinate={{
               latitude: marker.latitude,
               longitude: marker.longitude,
             }}
-            pinColor={"purple"}
+            pinColor={"violet"}
             title={marker.title}
             description={marker.subtitle}
           />
