@@ -25,7 +25,7 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.container}>
         <MapView initialRegion={{latitude: 8.434534, longitude: 77.031217, latitudeDelta: 0.2, longitudeDelta: 0.5}} showsMyLocationButton={true} style={styles.map}>
           
-
+        
         {locs.map((marker, index) => (
           <Marker
             key={index}
