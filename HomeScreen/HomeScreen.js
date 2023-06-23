@@ -19,11 +19,16 @@ import {
 } from "react-native";
 
 const HomeScreen = ({navigation}) => {
+  const latitude = 8.434534;
+  const longitude = 77.031217;
+  const desiredDistanceInMeters = 9000; // For example, 1 kilometer
+  const latitudeDelta = desiredDistanceInMeters / 111000; // Approximate value, 1 degree of latitude is approximately 111 kilometers
+  const longitudeDelta = desiredDistanceInMeters / (111000 * Math.cos(latitude * Math.PI / 180));
 
   return (
     <>
       <View style={styles.container}>
-        <MapView initialRegion={{latitude: 8.434534, longitude: 77.031217, latitudeDelta: 0.2, longitudeDelta: 0.5}} showsMyLocationButton={true} style={styles.map}>
+        <MapView initialRegion={{latitude, longitude, latitudeDelta, longitudeDelta}} showsMyLocationButton={true} style={styles.map}>
           
         
         {locs.map((marker, index) => (
@@ -42,13 +47,13 @@ const HomeScreen = ({navigation}) => {
 
         </MapView>
         <View style={styles.bottomBar}>
-          <MyButton
+          {/* <MyButton
                   title="I am a parking lot owner"
                   onPress={() => {console.log("parking Lot Owner")}}
                   buttonStyle={styles.button}
-            />
+            /> */}
           <MyButton
-                  title="I am looking for parking space"
+                  title="Look for Nearby Parking Spaces"
                   onPress={() => console.log("looking for parking space")}
                   buttonStyle={styles.button}
             />

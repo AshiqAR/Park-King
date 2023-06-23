@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-export default function Header(){
+export default function Header(props){
+    const {showProfileIsClicked} = props;
     return (
       <View style={styles.container}>
         <View style={styles.ourLogo}>
@@ -11,7 +12,7 @@ export default function Header(){
           />
           <Text style={{color: 'black', padding: 5, fontSize: 22}}>ParkKing</Text>
         </View>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={showProfileIsClicked}>
         <Image 
           source={require('../images/userLogo.png')}
           style= {styles.userLogo}
