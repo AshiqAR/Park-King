@@ -31,7 +31,7 @@ const SignupScreen = ({navigation}) => {
 
     const signUp = () => {
         if (name === "" && password === ""&&phonenumber==="") {
-          Alert.alert("Required Fields are empty", "Please fill all the fields");
+          Alert.alert("Required Fields are empty", "Please fill all the required * fields");
         } else {
           Alert.alert("Sign Up Successful", "You are successfully registered!");
           navigation.navigate("Login");
