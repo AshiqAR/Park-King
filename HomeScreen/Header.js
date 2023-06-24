@@ -8,9 +8,9 @@ export default function Header(props){
         <View style={styles.ourLogo}>
           <Image
             style={styles.img}
-            source={require('../images/park2.png')}
+            source={require('../images/parkingLogo.png')}
           />
-          <Text style={{color: 'black', padding: 5, fontSize: 22, fontWeight: "bold"}}>parKing</Text>
+          {/* <Text style={{color: 'black', padding: 5, fontSize: 22, fontWeight: "bold"}}>parKing</Text> */}
         </View>
         <TouchableOpacity onPress={showProfileIsClicked}>
         <Image 
@@ -34,8 +34,10 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
       alignItems: 'center',
+      justifyContent: 'center',
+
     },
-    img: { width: 60, height: 60 },
+    img: { width: 120, height: 20 },
     userLogo:{
       width: 40,
       height: 40,

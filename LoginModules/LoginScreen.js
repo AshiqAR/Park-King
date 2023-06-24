@@ -46,8 +46,8 @@ const LoginScreen = ( {navigation}) => {
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
-                source={require("../images/park2.png")}
-                style={{ width:500, height: 150 }}
+                source={require("../images/parkingLogo.png")}
+                style={{ width:200, height: 30, marginVertical: 40 }}
             />
             <TextInput
                 style={[styles.input,mobileNumberIsFocused && styles.inputIsFocused]}
