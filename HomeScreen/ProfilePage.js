@@ -12,9 +12,6 @@ const ProfilePage = ({ navigation}) => {
     const totalBookings = "5"
 
 
-    const addMyParkingSpace = () => {
-        console.log("Add My Parking Space Clicked");
-    };
     const logout = () => {
         Alert.alert("You are logged out !")
         navigation.navigate("Login")
@@ -23,6 +20,11 @@ const ProfilePage = ({ navigation}) => {
             routes: [{ name: "Login" }],
         });
     };
+    
+    const addMyParkingSpace = () => {
+        navigation.navigate("ParkOwner")
+    };
+
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>

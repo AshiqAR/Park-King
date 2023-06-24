@@ -7,18 +7,31 @@ import ProfilePage from './HomeScreen/ProfilePage';
 import LoginScreen from './LoginModules/LoginScreen';
 import SignupScreen from './LoginModules/SignupScreen';
 import HomeScreen from './HomeScreen/HomeScreen';
+import ParkOwner from './HomeScreen/ParkOwner';
 
 
 const Stack = createNativeStackNavigator();
 
 
 function App() {
+  
   const showProfile = () => {
     console.log("showProfile clicked");
     navigation.navigate("Profile")
   };
 
+
   const [users, setUsers] = useState([
+    {
+      "id": "0",
+      "name": 'Random Name',
+      "email": 'random1email@gmail.com',
+      "mobileNumber": '0',
+      "address": 'Random Address',
+      "pincode": '123456',
+      "totalBookings": "0",
+      "password": "0",
+    },
     { 
       "id": "1",
       "name": 'Ashiq',
@@ -40,15 +53,27 @@ function App() {
         "password": "hello",
       },
   ]);
+
+  const loginSuccessful = (user) => {
+    console.log("loginSuccessful", user);
+    navigation.navigate("Home");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Home" }],
+    });
+  }
+
   return (
 
     <NavigationContainer>
       <Stack.Navigator  screenOptions={{headerShown: false}}>
         
-        <Stack.Screen name="Login" component={LoginScreen} props={users} />
-        <Stack.Screen name="SignUp" component={SignupScreen} props={setUsers} />
+        <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
+        <Stack.Screen name="SignUp" component={SignupScreen} />
         <Stack.Screen name="Home" component={HomeScreen} options={({navigation}) => ({ headerTitle: () => <Header showProfileIsClicked={()=>{navigation.navigate("Profile")}}/>,  headerShown: true})} />
-        <Stack.Screen name="Profile" component={ProfilePage} options={{ headerTitle: () => <Header />,  headerShown: true}} props={users} />
+        <Stack.Screen name="Profile" component={ProfilePage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
+        <Stack.Screen name="ParkOwner" component={ParkOwner} options={{ headerTitle: () => <Header />,  headerShown: true}} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );

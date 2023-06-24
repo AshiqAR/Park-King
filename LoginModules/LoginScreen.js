@@ -16,7 +16,8 @@ import {
 } from "react-native";
 import {styles} from '../styles/loginStyles.js'
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ( {navigation}) => {
+    
     const [mobileNumber, setmobileNumber] = useState("");
     const [password, setPassword] = useState("");
     const [mobileNumberIsFocused, setmobileNumberIsFocused] = useState(false);
@@ -35,9 +36,10 @@ const LoginScreen = ({navigation}) => {
         }
     };
 
-    // const navigateToSignUp = () => {
-    //   navigation.navigate("SignUp/SignupScreen.js");
-    // };
+
+    const navigateToSignUp = () => {
+      navigation.navigate("SignUp");
+    };
 
   return (
     <>
@@ -84,7 +86,7 @@ const LoginScreen = ({navigation}) => {
     </View>
     <View style={styles.signUpPart}>
         <Text>Don't have an account? </Text>
-        <Pressable onPress={() => navigation.navigate('SignUp')}>
+        <Pressable onPress={() => navigateToSignUp()}>
         <Text style={styles.signUp}>Sign Up</Text>
         </Pressable>
     </View>
