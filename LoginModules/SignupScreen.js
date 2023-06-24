@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import {styles} from '../styles/loginStyles.js'
 
-const SignupScreen = () => {
+const SignupScreen = ({navigation}) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,11 +29,16 @@ const SignupScreen = () => {
     const [pincode, setPincode] = useState("");
     const [pincodeIsFocused, setPincodeIsFocused] = useState(false);
 
-    const handleLogin = () => {
-        if (name === " " && password === " "&&phonenumber===" ") {
-          Alert.alert("Fields cannot be empty", "Welcome to the ParKing!");
+    const signUp = () => {
+        if (name === "" && password === ""&&phonenumber==="") {
+          Alert.alert("Required Fields are empty", "Please fill all the fields");
         } else {
-          Alert.alert("Sign Up Failed", "Invalid name or password");
+          Alert.alert("Sign Up Successful", "You are successfully registered!");
+          navigation.navigate("Login");
+          navigation.reset({
+            index: 0,
+            routes: [{ name: "Login" }],
+          });
         }
     };
 
@@ -47,7 +52,7 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,nameIsFocused && styles.inputIsFocused]}
-                placeholder="Name"
+                placeholder="Name *"
                 onChangeText={(text) => setName(text)}
                 onFocus={() => setNameIsFocused(true)}
                 onBlur={() => setNameIsFocused(false)}
@@ -55,7 +60,7 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,emailIsFocused && styles.inputIsFocused]}
-                placeholder="Email"
+                placeholder="Email *"
                 onChangeText={(text) => setEmail(text)}
                 onFocus={() => setEmailIsFocused(true)}
                 onBlur={() => setEmailIsFocused(false)}
@@ -63,7 +68,7 @@ const SignupScreen = () => {
             />
             <TextInput
                 style={[styles.input,phonenumberIsFocused && styles.inputIsFocused]}
-                placeholder="Mobile Number"
+                placeholder="Mobile Number *"
                 onChangeText={(text) => setPhoneNumber(text)}
                 onFocus={() => setPhoneNumberIsFocused(true)}
                 onBlur={() => setPhoneNumberIsFocused(false)}
@@ -113,7 +118,7 @@ const SignupScreen = () => {
           <View>
             <MyButton
                 title="Sign Up"
-                onPress={() => handleLogin()}
+                onPress={() => signUp()}
                 buttonStyle={styles.button}
                 />
             </View>
