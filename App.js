@@ -8,6 +8,7 @@ import LoginScreen from './LoginModules/LoginScreen';
 import SignupScreen from './LoginModules/SignupScreen';
 import HomeScreen from './HomeScreen/HomeScreen';
 import ParkOwner from './HomeScreen/ParkOwner';
+import OwnerPage from './OwnerPage/OwnerPage';
 
 
 const Stack = createNativeStackNavigator();
@@ -72,7 +73,7 @@ function App() {
         <Stack.Screen name="SignUp" component={SignupScreen} />
         <Stack.Screen name="Home" component={HomeScreen} options={({navigation}) => ({ headerTitle: () => <Header showProfileIsClicked={()=>{navigation.navigate("Profile")}}/>,  headerShown: true})} />
         <Stack.Screen name="Profile" component={ProfilePage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
-        <Stack.Screen name="ParkOwner" component={ParkOwner} options={{ headerTitle: () => <Header />,  headerShown: true}} />
+        <Stack.Screen name="ParkOwner" component={OwnerPage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
         
       </Stack.Navigator>
     </NavigationContainer>
