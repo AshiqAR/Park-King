@@ -22,6 +22,12 @@ const SignupScreen = () => {
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
     const [phonenumberIsFocused, setPhoneNumberIsFocused] = useState(false);
     const [confirmPasswordIsFocused, setConfirmPasswordIsFocused] = useState(false);
+    const [address, setAddress] = useState("");
+    const [addressIsFocused, setAddressIsFocused] = useState(false);
+    const [email, setEmail] = useState("");
+    const [emailIsFocused, setEmailIsFocused] = useState(false);
+    const [pincode, setPincode] = useState("");
+    const [pincodeIsFocused, setPincodeIsFocused] = useState(false);
 
     const handleLogin = () => {
         if (name === " " && password === " "&&phonenumber===" ") {
@@ -36,8 +42,8 @@ const SignupScreen = () => {
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
-                source={require("./images/park2.png")}
-                style={{ width: 700, height: 200 }}
+                source={require("../images/park2.png")}
+                style={{ width: 500, height: 150 }}
             />
             <TextInput
                 style={[styles.input,nameIsFocused && styles.inputIsFocused]}
@@ -48,12 +54,36 @@ const SignupScreen = () => {
                 value={name}
             />
             <TextInput
+                style={[styles.input,emailIsFocused && styles.inputIsFocused]}
+                placeholder="Email"
+                onChangeText={(text) => setEmail(text)}
+                onFocus={() => setEmailIsFocused(true)}
+                onBlur={() => setEmailIsFocused(false)}
+                value={email}
+            />
+            <TextInput
                 style={[styles.input,phonenumberIsFocused && styles.inputIsFocused]}
-                placeholder="Phone Number"
+                placeholder="Mobile Number"
                 onChangeText={(text) => setPhoneNumber(text)}
                 onFocus={() => setPhoneNumberIsFocused(true)}
                 onBlur={() => setPhoneNumberIsFocused(false)}
                 value={phonenumber}
+            />
+            <TextInput
+                style={[styles.input,addressIsFocused && styles.inputIsFocused]}
+                placeholder="Address"
+                onChangeText={(text) => setAddress(text)}
+                onFocus={() => setAddressIsFocused(true)}
+                onBlur={() => setAddressIsFocused(false)}
+                value={address}
+            />
+            <TextInput
+                style={[styles.input,pincodeIsFocused && styles.inputIsFocused]}
+                placeholder="Pincode"
+                onChangeText={(text) => setPincode(text)}
+                onFocus={() => setPincodeIsFocused(true)}
+                onBlur={() => setPincodeIsFocused(false)}
+                value={pincode}
             />
             <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}

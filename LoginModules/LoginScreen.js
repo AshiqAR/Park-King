@@ -44,7 +44,7 @@ const LoginScreen = ({navigation}) => {
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
-                source={require("./images/park2.png")}
+                source={require("../images/park2.png")}
                 style={{ width:500, height: 150 }}
             />
             <TextInput
