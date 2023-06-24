@@ -36,7 +36,7 @@ const HomeScreen = ({navigation}) => {
               longitude,
             },
             zoom: 17 ,
-            heading: 0,
+            heading: 80,
             pitch: 0,
           },
           { duration: 3500 }

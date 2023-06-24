@@ -13,14 +13,14 @@ const ProfilePage = ({ navigation}) => {
 
 
     const logout = () => {
-        Alert.alert("You are logged out !")
+        // Alert.alert("You are logged out !")
         navigation.navigate("Login")
         navigation.reset({
             index: 0,
             routes: [{ name: "Login" }],
         });
     };
-    
+
     const addMyParkingSpace = () => {
         navigation.navigate("ParkOwner")
     };
