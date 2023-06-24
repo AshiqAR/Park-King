@@ -10,7 +10,7 @@ export default function Header(props){
             style={styles.img}
             source={require('../images/park2.png')}
           />
-          <Text style={{color: 'black', padding: 5, fontSize: 22}}>ParkKing</Text>
+          <Text style={{color: 'black', padding: 5, fontSize: 22, fontWeight: "bold"}}>parKing</Text>
         </View>
         <TouchableOpacity onPress={showProfileIsClicked}>
         <Image 

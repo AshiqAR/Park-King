@@ -24,7 +24,7 @@ const LoginScreen = ({navigation}) => {
 
     const handleLogin = () => {
         if (mobileNumber === "0" && password === "0") {
-          Alert.alert("Sign In Successful", "Welcome to the ParKing!");
+          Alert.alert( "Welcome to the ParKing!", "You are successfully logged in!");
           navigation.navigate("Home");
           navigation.reset({
             index: 0,

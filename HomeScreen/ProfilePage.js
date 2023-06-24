@@ -4,12 +4,12 @@ import { styles } from "../styles/profileStyles";
 import MyButton from "../MyButton";
 
 const ProfilePage = ({ navigation}) => {
-    const name = "user name"
-    const address = "user address"
-    const mobileNumber = "user mobile number"
-    const email = "user email"
-    const pincode = "user pincode"
-    const totalBookings = "user total bookings"
+    const name = "Arun"
+    const address = "V V House Kallara"
+    const mobileNumber = "9056787878"
+    const email = "ahsiq374@gmail.com"
+    const pincode = "567558"
+    const totalBookings = "5"
 
 
     const addMyParkingSpace = () => {
