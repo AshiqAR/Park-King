@@ -38,7 +38,7 @@ const OwnerPage = ({navigation}) => {
   return (
    
     <View style={styles.container}>
-      <Image style={styles.ownerImage} source={require("../images/1.jpg")}/>
+      <Image style={styles.ownerImage} source={require("../images/beProvider.png")}/>
     <View style={styles.card}>
       <View style={styles.formItem}>
         <Text style={styles.label}>Owner Name :</Text>
