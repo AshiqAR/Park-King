@@ -47,8 +47,8 @@ const SignupScreen = ({navigation}) => {
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
-                source={require("../../images/parkingLogo.png")}
-                style={{ width:200, height: 30, marginVertical: 40  }}
+                source={require("../../images/quikspot.png")}
+                style={{ width:150, height: 50, marginVertical: 30  }}
             />
             <TextInput
                 style={[styles.input,nameIsFocused && styles.inputIsFocused]}

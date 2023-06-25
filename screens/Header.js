@@ -8,7 +8,7 @@ export default function Header(props){
         <View style={styles.ourLogo}>
           <Image
             style={styles.img}
-            source={require('../images/parkingLogo.png')}
+            source={require('../images/quikspot.png')}
           />
           {/* <Text style={{color: 'black', padding: 5, fontSize: 22, fontWeight: "bold"}}>parKing</Text> */}
         </View>
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
       justifyContent: 'flex-start',
 
     },
-    img: { width: 120, height: 20 },
+    img: { width: 100, height: 40 },
     userLogo:{
       width: 40,
       height: 40,
