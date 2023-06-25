@@ -32,7 +32,7 @@ const SignupScreen = ({navigation}) => {
     const [pincodeIsFocused, setPincodeIsFocused] = useState(false);
 
     const signUp = () => {
-        if (name === "" && password === ""&&phonenumber==="") {
+        if (name === "" || password === ""||phonenumber==="") {
           Alert.alert("Required Fields are empty", "Please fill all the required * fields");
         } else {
           Alert.alert("Success", "Account Created Successfully");
