@@ -24,7 +24,7 @@ const LoginScreen = ( {navigation}) => {
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
 
     const handleLogin = () => {
-        if (mobileNumber === "0" && password === "0") {
+        if (mobileNumber === "9876543210" && password === "user") {
           // Alert.alert( "Welcome to the ParKing!", "You have successfully logged in!");
           navigation.navigate("Home");
           navigation.reset({
