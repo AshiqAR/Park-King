@@ -32,9 +32,13 @@ const SignupScreen = ({navigation}) => {
     const [pincodeIsFocused, setPincodeIsFocused] = useState(false);
 
     const signUp = () => {
-        if (name === "" || password === ""||phonenumber==="") {
+        if (name === "" || password === ""||phonenumber===""||email===""||confirmPassword==="") {
           Alert.alert("Required Fields are empty", "Please fill all the required * fields");
-        } else {
+        }
+        else if(password !== confirmPassword){
+            Alert.alert("Password Mismatch", "Please enter the same password in both fields");
+        }
+        else {
           Alert.alert("Success", "Account Created Successfully");
           navigation.navigate("Login");
           navigation.reset({
@@ -95,7 +99,7 @@ const SignupScreen = ({navigation}) => {
             />
             <TextInput
                 style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
-                placeholder="Enter Password"
+                placeholder="Password *"
                 onFocus={() => setPasswordIsFocused(true)}
                 onBlur={() => setPasswordIsFocused(false)}
                 secureTextEntry={true}
@@ -104,7 +108,7 @@ const SignupScreen = ({navigation}) => {
             />
             <TextInput
                 style={[styles.input,confirmPasswordIsFocused && styles.inputIsFocused]}
-                placeholder="Confirm Password"
+                placeholder="Confirm Password *"
                 onFocus={() => setConfirmPasswordIsFocused(true)}
                 onBlur={() => setConfirmPasswordIsFocused(false)}
                 secureTextEntry={true}
