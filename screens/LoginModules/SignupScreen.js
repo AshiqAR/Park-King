@@ -9,6 +9,8 @@ import {
   Keyboard,
     Pressable,
   TextInput,
+  SafeAreaView,
+  ScrollView,
   Alert,
 } from "react-native";
 import {styles} from '../../styles/loginStyles.js'
@@ -33,7 +35,7 @@ const SignupScreen = ({navigation}) => {
         if (name === "" && password === ""&&phonenumber==="") {
           Alert.alert("Required Fields are empty", "Please fill all the required * fields");
         } else {
-          Alert.alert("Sign Up Successful", "You are successfully registered!");
+          Alert.alert("Success", "Account Created Successfully");
           navigation.navigate("Login");
           navigation.reset({
             index: 0,
@@ -43,7 +45,8 @@ const SignupScreen = ({navigation}) => {
     };
 
   return (
-    <>
+    <SafeAreaView style={styles.safeArea}>
+    <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
@@ -125,7 +128,8 @@ const SignupScreen = ({navigation}) => {
         </View>
     </View>
    
-    </>
+    </ScrollView>
+    </SafeAreaView>
   );
 };
 

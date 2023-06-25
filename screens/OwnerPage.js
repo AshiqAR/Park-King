@@ -10,6 +10,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  SafeAreaView,
   Keyboard,
     Pressable,
   TextInput,
@@ -25,21 +26,36 @@ const OwnerPage = ({navigation}) => {
 
   const handleLogin = () => {
     // Handle form submission, e.g., save owner details to a database
+    if(!ownerName || !parkSpaceName || !numVehicles || !location) {
+      Alert.alert('Please fill all the details');
+      return;
+    }
     const ownerDetails = {
       ownerName,
       parkSpaceName,
       numVehicles,
       location,
     };
-
+    setLocation('');
+    setNumVehicles('');
+    setParkSpaceName('');
+    setOwnerName('');
+    Alert.alert('Details submitted successfully');
     console.log('Submitted owner details:', ownerDetails);
   };
 
   return (
+    <SafeAreaView style={styles.safeArea}>
+    <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
    
     <View style={styles.container}>
-      <Image style={styles.ownerImage} source={require("../images/beProvider.png")}/>
+      <Image style={styles.ownerImage} source={require("../images/location.jpg")}/>
     <View style={styles.card}>
+    <View style={{paddingVertical:20}}>
+        <Text
+          style={{fontFamily: 'sans-serif-condensed', fontSize: 30, fontWeight: 'bold', textAlign: 'center', color: 'gray'}}
+        >Be a Parking Space Provider with us</Text>
+      </View>
       <View style={styles.formItem}>
         <Text style={styles.label}>Owner Name :</Text>
         <TextInput
@@ -100,6 +116,9 @@ const OwnerPage = ({navigation}) => {
             </View>
     </View>
   </View>
+
+  </ScrollView>
+  </SafeAreaView>
     
    
   );

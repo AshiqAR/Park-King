@@ -20,6 +20,19 @@ import {
 } from "react-native";
 
 const HomeScreen = ({navigation}) => {
+
+  const CustomMarker = ({ latitude, longitude, title, description}) => {
+    return (
+      <Marker
+        coordinate={{ latitude: latitude, longitude: longitude }}
+        title={title}
+        description={description}
+        image={require('../images/parkSpace.png')}
+        style={{ width: 50, height: 50 }}
+      />
+    );
+  };
+
   const mapRef = useRef(null);
   const latitude = 9.057485;
   const longitude = 76.536725;
@@ -46,7 +59,7 @@ const HomeScreen = ({navigation}) => {
               longitude: currentLocation.longitude,
             },
             zoom: 19 ,
-            heading: 80,
+            heading: 0,
             pitch: 0,
           },
           { duration: 5500}
@@ -100,17 +113,19 @@ const HomeScreen = ({navigation}) => {
           )}
         
         {locs.map((marker, index) => (
-          <Marker
-            key={index}
-            coordinate={{
-              latitude: marker.latitude,
-              longitude: marker.longitude,
-            }}
-            pinColor={"violet"}
-            title={marker.title}
-            description={marker.subtitle}
-          >
-          </Marker>
+          // <Marker
+          //   key={index}
+          //   coordinate={{
+          //     latitude: marker.latitude,
+          //     longitude: marker.longitude,
+          //   }}
+          //   pinColor={"violet"}
+          //   title={marker.title}
+          //   description={marker.subtitle}
+          // >
+          // </Marker>
+
+          <CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description}  />
         ))}
 
 

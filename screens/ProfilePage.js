@@ -4,7 +4,7 @@ import { styles } from "../styles/profileStyles";
 import MyButton from "../components/MyButton";
 
 const ProfilePage = ({ navigation}) => {
-    const name = "Arun"
+    const name = "Ashiq"
     const address = "V V House Kallara"
     const mobileNumber = "9056787878"
     const email = "ahsiq374@gmail.com"
@@ -50,12 +50,24 @@ const ProfilePage = ({ navigation}) => {
                 <Text style={styles.label}>Pincode:</Text>
                 <Text style={styles.text}>{pincode}</Text>
 
-                <Text style={styles.label}>Total Number of Parkings: </Text>
-                <Text style={styles.text}>{totalBookings}</Text>
 
             </View>
+            <View style={styles.list}>
+                <TouchableOpacity>
+                    <Text style={styles.listText}>Your Previous Parkings</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.list}>
+                <TouchableOpacity>
+                    <Text style={styles.listText}>Vehicle Details</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={styles.list}>
+                <TouchableOpacity>
+                    <Text style={styles.listText}>Settings</Text>
+                </TouchableOpacity>
+            </View>
 
-        </ScrollView>
         <View style={styles.buttonContainer}>
 
             {/* <TouchableOpacity onPress={()=>logout()}>
@@ -65,13 +77,14 @@ const ProfilePage = ({ navigation}) => {
                 title="Logout"
                 onPress={() => logout()}
                 buttonStyle={styles.logoutButton}
-            />
+                />
             <MyButton 
                 title="Add My Parking Space"
                 onPress={() => addMyParkingSpace()}
                 buttonStyle={styles.button}
-            />
+                />
         </View>
+                </ScrollView>
         </SafeAreaView>
     )
 }

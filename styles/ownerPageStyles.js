@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  safeArea:{
+    flex: 1,
+  },
 
   container: {
     flex: 1,
@@ -20,7 +23,7 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 13,
     elevation: 3,
-    shadowColor: 'blue',
+    shadowColor: 'skyblue',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -29,6 +32,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 3.84,
     padding: 16,
     width: '100%',
+    marginVertical: 10,
   },
   formItem: {
     marginBottom: 16,

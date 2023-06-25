@@ -33,13 +33,26 @@ export const styles = StyleSheet.create({
   text:{
     fontSize: 20,
   },
+  listText: {
+    fontSize: 20,
+  },
+  list: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 20,
+    borderBottomWidth: .5,
+    borderBottomColor: 'gray',
+    marginHorizontal: 20,
+
+  },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    position: 'absolute',
     width: '100%',
-    bottom: 20,
+    paddingVertical: 20,
   },
   button: {
     backgroundColor: 'green',
@@ -52,7 +65,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
     color: 'pink',
     fontSize: 20,
-    width: 200,
+    width: "45%",
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -67,7 +80,7 @@ export const styles = StyleSheet.create({
         elevation: 5,
         color: 'pink',
         fontSize: 20,
-        width: 200,
+        width: "45%",
         justifyContent: 'center',
         alignItems: 'center',
     },

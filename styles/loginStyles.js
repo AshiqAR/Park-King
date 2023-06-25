@@ -2,6 +2,24 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
 
+    safeArea:{
+        flex: 1,
+        width: "100%",
+        marginTop: 90,
+      },
+      scrollView:{
+      },
+        contentContainerStyle:{
+            paddingVertical: 30,
+        },
+    
+      container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent:"flex-start",
+        padding: 16,
+      },
+
 container: {
     flex: 1,
     alignItems: 'center',
