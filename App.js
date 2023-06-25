@@ -2,13 +2,12 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
-import Header from './HomeScreen/Header';
-import ProfilePage from './HomeScreen/ProfilePage';
-import LoginScreen from './LoginModules/LoginScreen';
-import SignupScreen from './LoginModules/SignupScreen';
-import HomeScreen from './HomeScreen/HomeScreen';
-import ParkOwner from './HomeScreen/ParkOwner';
-import OwnerPage from './OwnerPage/OwnerPage';
+import Header from './screens/Header';
+import ProfilePage from './screens/ProfilePage';
+import LoginScreen from './screens/LoginModules/LoginScreen';
+import SignupScreen from './screens/LoginModules/SignupScreen';
+import HomeScreen from './screens/HomeScreen';
+import OwnerPage from './screens/OwnerPage';
 
 
 const Stack = createNativeStackNavigator();

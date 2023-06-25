@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import {styles} from '../styles/homeStyles'
-import MapScreen from "../MapScreen";
+import MapScreen from "../components/MapScreen";
 import MapView ,{Marker} from "react-native-maps";
 import locs from "./MarkLocations";
 
-import MyButton from "../MyButton.js";
+import MyButton from "../components/MyButton.js";
 import {
   View,
   Text,

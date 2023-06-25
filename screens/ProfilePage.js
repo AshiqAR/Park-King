@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Alert, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 import { styles } from "../styles/profileStyles";
-import MyButton from "../MyButton";
+import MyButton from "../components/MyButton";
 
 const ProfilePage = ({ navigation}) => {
     const name = "Arun"

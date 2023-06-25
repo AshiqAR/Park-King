@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ScrollView } from 'react-native';
 import { Icon } from '@rneui/themed';
-import MyButton from "../MyButton.js";
+import MyButton from "../components/MyButton.js";
 
 import {
   View,
@@ -15,7 +15,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import {styles} from '../OwnerPage/styles.js'
+import {styles} from '../styles/ownerPageStyles.js'
 
 const OwnerPage = ({navigation}) => {
   const [ownerName, setOwnerName] = useState('');

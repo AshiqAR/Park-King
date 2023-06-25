@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MyButton from "../MyButton.js";
+import MyButton from "../../components/MyButton";
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-import {styles} from '../styles/loginStyles.js'
+import {styles} from '../../styles/loginStyles.js'
 
 const SignupScreen = ({navigation}) => {
     const [name, setName] = useState("");
@@ -47,7 +47,7 @@ const SignupScreen = ({navigation}) => {
     <View style={styles.container}>
         <View style={styles.card}>
             <Image
-                source={require("../images/park2.png")}
+                source={require("../../images/parkingLogo.png")}
                 style={{ width:200, height: 30, marginVertical: 40  }}
             />
             <TextInput
