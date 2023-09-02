@@ -132,7 +132,7 @@ const HomeScreen = ({navigation}) => {
         </MapView>
         <View style={styles.bottomBar}>
           <MyButton
-              title="Look for Nearby Paring Spaces"
+              title="Look for Nearby Parking Spaces"
               onPress={()=>{setPinColor("violet")}}
               buttonStyle={styles.button}
             />
