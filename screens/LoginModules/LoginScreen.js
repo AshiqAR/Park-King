@@ -5,15 +5,11 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView ,
-  Keyboard,
-    Pressable,
+  Pressable,
   TextInput,
   Alert,
 } from "react-native";
+
 import {styles} from '../../styles/loginStyles.js'
 
 const LoginScreen = ( {navigation}) => {
@@ -22,14 +18,14 @@ const LoginScreen = ( {navigation}) => {
     const [password, setPassword] = useState("");
     const [mobileNumberIsFocused, setmobileNumberIsFocused] = useState(false);
     const [passwordIsFocused, setPasswordIsFocused] = useState(false);
+    const [username, setName] = useState("ashiq");
 
     const handleLogin = () => {
         if (mobileNumber === "9876543210" && password === "user") {
           // Alert.alert( "Welcome to the ParKing!", "You have successfully logged in!");
-          navigation.navigate("Home");
           navigation.reset({
             index: 0,
-            routes: [{ name: "Home" }],
+            routes: [{ name: "Home", params: { username: username } }],
           });
         } else {
           Alert.alert("Sign in Failed", "Invalid Mobile Number or password");

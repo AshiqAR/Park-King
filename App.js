@@ -15,7 +15,7 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   
-  const showProfile = () => {
+  const showProfile = (navigation) => {
     console.log("showProfile clicked");
     navigation.navigate("Profile")
   };
@@ -70,7 +70,7 @@ function App() {
         
         <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
         <Stack.Screen name="SignUp" component={SignupScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} options={({navigation}) => ({ headerTitle: () => <Header showProfileIsClicked={()=>{navigation.navigate("Profile")}}/>,  headerShown: true})} />
+        <Stack.Screen name="Home" component={HomeScreen} options={({navigation, route}) => ({ headerTitle: () => <Header showProfileIsClicked={()=>{showProfile(navigation)}}/>,  headerShown: true})} />
         <Stack.Screen name="Profile" component={ProfilePage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
         <Stack.Screen name="ParkOwner" component={OwnerPage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
         

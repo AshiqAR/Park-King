@@ -14,12 +14,13 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
-    Pressable,
+  Pressable,
   TextInput,
   Alert,
 } from "react-native";
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({navigation, route}) => {
+  console.log(route);
 
   const CustomMarker = ({ latitude, longitude, title, description}) => {
     return (
@@ -40,8 +41,6 @@ const HomeScreen = ({navigation}) => {
   const latitudeDelta = desiredDistanceInMeters / 111000;
   const longitudeDelta = desiredDistanceInMeters / (111000 * Math.cos(latitude * Math.PI / 180));
 
-  // const [currentlocation,setCurrentLocation] = {latitude: 8.545871, longitude: 76.903870};
-  // const [showPrompt, setShowPromt] = useState(false);
   const [currentLocation,setCurrentLocation] = useState({latitude: 8.545871, longitude: 76.903870});
   const [pinColor, setPinColor] = useState("blue");
   const [showMarker, setShowMarker] = useState(false);
