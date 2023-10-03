@@ -44,85 +44,108 @@ const HomeScreen = ({navigation, route}) => {
   const [currentLocation,setCurrentLocation] = useState({latitude: 8.545871, longitude: 76.903870});
   const [pinColor, setPinColor] = useState("blue");
   const [showMarker, setShowMarker] = useState(false);
+
+
+  const [location, setLocation] = useState(null);
+  const [error, setError] = useState(null);
+
+
   const handleButtonPress = () => {
     setShowMarker(true);
   };
-  useEffect(() => {
-    setTimeout(() => {
-      if (mapRef.current) {
-        setShowMarker(true);
-        mapRef.current.animateCamera(
-          {
-            center: {
-              latitude: currentLocation.latitude,
-              longitude: currentLocation.longitude,
-            },
-            zoom: 19 ,
-            heading: 0,
-            pitch: 0,
-          },
-          { duration: 5500}
-        );
-        setPinColor("blue");
-      }
-    }, 100);
-  }, [pinColor]);
-
-
 
   useEffect(() => {
-    setTimeout(() => {
-      if (mapRef.current) {
-        mapRef.current.animateCamera(
-          {
-            center: {
-              latitude,
-              longitude,
-            },
-            zoom: 16 ,
-            heading: 0,
-            pitch: 0,
-          },
-          { duration: 0}
-        );
+    (async () => {
+      
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
       }
-    }, 100);
+
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+      console.log(location);
+
+      setTimeout(() => {
+        if (mapRef.current) {
+          mapRef.current.animateCamera(
+            {
+              center: {
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude
+              },
+              zoom: 16 ,
+              heading: 0,
+              pitch: 0,
+            },
+            { duration: 0}
+          );
+        }
+      }, 100);
+    })();
   }, []);
+
+
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (mapRef.current) {
+  //       setShowMarker(true);
+  //       mapRef.current.animateCamera(
+  //         {
+  //           center: {
+  //             latitude: currentLocation.latitude,
+  //             longitude: currentLocation.longitude,
+  //           },
+  //           zoom: 19 ,
+  //           heading: 0,
+  //           pitch: 0,
+  //         },
+  //         { duration: 5500}
+  //       );
+  //       setPinColor("blue");
+  //     }
+  //   }, 100);
+  // }, [pinColor]);
+
+
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     if (mapRef.current) {
+  //       mapRef.current.animateCamera(
+  //         {
+  //           center: {
+  //             latitude: location.coord.latitude,
+  //             longitude: location.coord.longitude
+  //           },
+  //           zoom: 16 ,
+  //           heading: 0,
+  //           pitch: 0,
+  //         },
+  //         { duration: 0}
+  //       );
+  //     }
+  //   }, 100);
+  // }, [location]);
 
   return (
     <>
       <View style={styles.container}>
         <MapView ref={mapRef} showsMyLocationButton={true} style={styles.map}>
-          {/* <Marker 
-            coordinate={{latitude: currentLocation.latitude,
-            longitude: currentLocation.longitude,
-            }}
-            pinColor={pinColor}
-            title="You are here"
-          /> */}
 
           {showMarker && (
             <Marker
               coordinate={{
-                latitude: currentLocation.latitude,
-                longitude: currentLocation.longitude,
+                latitude: location.latitude,
+                longitude: location.longitude,
               }}
               title={"You are here"}
             />
           )}
         
         {locs.map((marker, index) => (
-          // <Marker
-          //   key={index}
-          //   coordinate={{
-          //     latitude: marker.latitude,
-          //     longitude: marker.longitude,
-          //   }}
-          //   pinColor={"violet"}
-          //   title={marker.title}
-          //   description={marker.subtitle}
-          // >
-          // </Marker>
 
           <CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description}  />
         ))}
