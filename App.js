@@ -17,7 +17,7 @@ function App() {
   
   const showProfile = (navigation) => {
     console.log("showProfile clicked");
-    navigation.navigate("Profile")
+    navigation.navigate("Profile",{id:2})
   };
 
 

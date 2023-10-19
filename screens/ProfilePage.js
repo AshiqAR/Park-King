@@ -2,6 +2,7 @@ import React from "react";
 import { Text, View, Alert, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
 import { styles } from "../styles/profileStyles";
 import MyButton from "../components/MyButton";
+import { useRoute } from '@react-navigation/native';
 
 const ProfilePage = ({ navigation}) => {
     const name = "Ashiq"
@@ -25,6 +26,9 @@ const ProfilePage = ({ navigation}) => {
         navigation.navigate("ParkOwner")
     };
 
+    const route = useRoute();
+  const dataReceived = route.params?.id;
+
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
@@ -35,7 +39,7 @@ const ProfilePage = ({ navigation}) => {
                 />
             </View>
             <View style={styles.detailsView}>
-                <Text style={styles.label}>Name:</Text>
+                <Text style={styles.label}>Name:{dataReceived}</Text>
                 <Text style={styles.text}>{name}</Text>
 
                 <Text style={styles.label}>Mobile Number:</Text>

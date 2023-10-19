@@ -25,7 +25,8 @@ const LoginScreen = ( {navigation}) => {
           // Alert.alert( "Welcome to the ParKing!", "You have successfully logged in!");
           navigation.reset({
             index: 0,
-            routes: [{ name: "Home", params: { username: username } }],
+            routes: [{ name: "Home", params: { username: username, id 
+            :"htus" } }],
           });
         } else {
           Alert.alert("Sign in Failed", "Invalid Mobile Number or password");

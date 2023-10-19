@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { ScrollView } from 'react-native';
+import React, { useState,useCallback } from "react";
+import { ScrollView ,Button} from 'react-native';
 import { Icon } from '@rneui/themed';
 import MyButton from "../components/MyButton.js";
+import * as DocumentPicker from 'expo-document-picker';
+
 
 import {
   View,
@@ -43,6 +45,18 @@ const OwnerPage = ({navigation}) => {
     Alert.alert('Details submitted successfully');
     console.log('Submitted owner details:', ownerDetails);
   };
+//////////////////////
+
+
+pickDocument = async () => {
+
+  let result = await DocumentPicker.getDocumentAsync({});
+  
+  alert(result.uri);
+  
+  console.log(result);
+  
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -94,6 +108,11 @@ const OwnerPage = ({navigation}) => {
       </View>
       
 <TouchableOpacity>
+
+<Button
+title="Select Document"
+onPress={this.pickDocument}
+/>
 <Text style={styles.label1}>
   Upload File
   <Icon
