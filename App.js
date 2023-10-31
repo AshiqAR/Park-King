@@ -8,6 +8,9 @@ import LoginScreen from './screens/LoginModules/LoginScreen';
 import SignupScreen from './screens/LoginModules/SignupScreen';
 import HomeScreen from './screens/HomeScreen';
 import OwnerPage from './screens/OwnerPage';
+import HistoryPage from './screens/History';
+import DetailsPage from './screens/Details';
+import SettingPage from './screens/Settings';
 
 
 const Stack = createNativeStackNavigator();
@@ -70,10 +73,12 @@ function App() {
         
         <Stack.Screen name="Login" component={LoginScreen}></Stack.Screen>
         <Stack.Screen name="SignUp" component={SignupScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} options={({navigation, route}) => ({ headerTitle: () => <Header showProfileIsClicked={()=>{showProfile(navigation)}}/>,  headerShown: true})} />
+        <Stack.Screen name="Home" component ={HomeScreen} options={({navigation, route}) => ({ headerTitle: () => <Header showProfileIsClicked={()=>{showProfile(navigation)}}/>,  headerShown: true})} />
         <Stack.Screen name="Profile" component={ProfilePage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
         <Stack.Screen name="ParkOwner" component={OwnerPage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
-        
+        <Stack.Screen name="History" component={HistoryPage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
+        <Stack.Screen name="Details" component={DetailsPage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
+        <Stack.Screen name="Settings" component={SettingPage} options={{ headerTitle: () => <Header />,  headerShown: true}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

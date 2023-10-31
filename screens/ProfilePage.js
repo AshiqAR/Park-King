@@ -28,7 +28,9 @@ const ProfilePage = ({ navigation}) => {
 
     const route = useRoute();
   const dataReceived = route.params?.id;
-
+  const moveTopage = (page) => {
+    navigation.navigate(page)
+};
     return (
         <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
@@ -57,17 +59,17 @@ const ProfilePage = ({ navigation}) => {
 
             </View>
             <View style={styles.list}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>moveTopage("History")}>
                     <Text style={styles.listText}>Your Previous Parkings</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.list}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>moveTopage("Details")}>
                     <Text style={styles.listText}>Vehicle Details</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.list}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>moveTopage("Settings")}>
                     <Text style={styles.listText}>Settings</Text>
                 </TouchableOpacity>
             </View>
