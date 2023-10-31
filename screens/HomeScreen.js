@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import {styles} from '../styles/homeStyles'
+import { styles } from '../styles/homeStyles'
 import MapScreen from "../components/MapScreen";
-import MapView ,{Marker} from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import locs from "./MarkLocations";
 import * as Location from "expo-location";
+import { ActivityIndicator } from "react-native";
+import Loading from "../components/Loading";
 
 import MyButton from "../components/MyButton.js";
 import {
@@ -19,10 +21,10 @@ import {
   Alert,
 } from "react-native";
 
-const HomeScreen = ({navigation, route}) => {
+const HomeScreen = ({ navigation, route }) => {
   console.log(route);
 
-  const CustomMarker = ({ latitude, longitude, title, description}) => {
+  const CustomMarker = ({ latitude, longitude, title, description }) => {
     return (
       <Marker
         coordinate={{ latitude: latitude, longitude: longitude }}
@@ -41,7 +43,7 @@ const HomeScreen = ({navigation, route}) => {
   const latitudeDelta = desiredDistanceInMeters / 111000;
   const longitudeDelta = desiredDistanceInMeters / (111000 * Math.cos(latitude * Math.PI / 180));
 
-  const [currentLocation,setCurrentLocation] = useState({latitude: 8.545871, longitude: 76.903870});
+  const [currentLocation, setCurrentLocation] = useState({ latitude: 8.545871, longitude: 76.903870 });
   const [pinColor, setPinColor] = useState("blue");
   const [showMarker, setShowMarker] = useState(false);
 
@@ -50,13 +52,15 @@ const HomeScreen = ({navigation, route}) => {
   const [error, setError] = useState(null);
 
 
+  const [fetchingLocation, setFetchingLocation] = useState(true);
+
+
   const handleButtonPress = () => {
     setShowMarker(true);
   };
 
   useEffect(() => {
     (async () => {
-      
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         setErrorMsg('Permission to access location was denied');
@@ -66,6 +70,9 @@ const HomeScreen = ({navigation, route}) => {
       let location = await Location.getCurrentPositionAsync({});
       setLocation(location);
       console.log(location);
+      if(location){
+        setFetchingLocation(false);
+      }
 
       setTimeout(() => {
         if (mapRef.current) {
@@ -75,16 +82,17 @@ const HomeScreen = ({navigation, route}) => {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude
               },
-              zoom: 16 ,
+              zoom: 16,
               heading: 0,
               pitch: 0,
             },
-            { duration: 0}
+            { duration: 0 }
           );
         }
       }, 100);
     })();
   }, []);
+
 
 
 
@@ -131,10 +139,10 @@ const HomeScreen = ({navigation, route}) => {
   // }, [location]);
 
   return (
-    <>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      {fetchingLocation ? <Loading /> :
+        <View>
         <MapView ref={mapRef} showsMyLocationButton={true} style={styles.map}>
-
           {showMarker && (
             <Marker
               coordinate={{
@@ -144,23 +152,24 @@ const HomeScreen = ({navigation, route}) => {
               title={"You are here"}
             />
           )}
-        
-        {locs.map((marker, index) => (
 
-          <CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description}  />
-        ))}
+          {locs.map((marker, index) => (
+
+            <CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description} />
+          ))}
 
 
         </MapView>
         <View style={styles.bottomBar}>
           <MyButton
-              title="Look for Nearby Parking Spaces"
-              onPress={()=>{setPinColor("violet")}}
-              buttonStyle={styles.button}
-            />
+            title="Look for Nearby Parking Spaces"
+            onPress={() => { setPinColor("violet") }}
+            buttonStyle={styles.button}
+          />
         </View>
-      </View>
-    </>
+        </View> 
+      }
+    </View>
   );
 }
 
