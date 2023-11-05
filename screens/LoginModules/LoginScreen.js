@@ -10,106 +10,83 @@ import {
   Alert,
 } from "react-native";
 
-import { styles } from '../../styles/loginStyles.js'
-import {ip} from '../../globals.js'
+import {styles} from '../../styles/loginStyles.js'
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ( {navigation}) => {
+    
+    const [mobileNumber, setmobileNumber] = useState("");
+    const [password, setPassword] = useState("");
+    const [mobileNumberIsFocused, setmobileNumberIsFocused] = useState(false);
+    const [passwordIsFocused, setPasswordIsFocused] = useState(false);
+    const [username, setName] = useState("ashiq");
 
-  const [mobileNumber, setmobileNumber] = useState("");
-  const [password, setPassword] = useState("");
-  const [mobileNumberIsFocused, setmobileNumberIsFocused] = useState(false);
-  const [passwordIsFocused, setPasswordIsFocused] = useState(false);
-
-  const handleLogin = () => {
-    const apiUrl = ip+"/signin";
-
-    const requestData = {
-      mobileNumber: mobileNumber,
-      password: password,
-    };
-
-    fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(requestData),
-    })
-      .then((response) => {
-        if (response.status == 200) {
-          return response.json();
-        }
-        else {
-          Alert.alert("Sign in Failed", "Invalid Mobile Number or password");
-        }
-      })
-      .then((data) => {
-        if (data.success == "true") {
-          token = data.token;
+    const handleLogin = () => {
+        if (mobileNumber === "9876543210" && password === "user") {
+          // Alert.alert( "Welcome to the ParKing!", "You have successfully logged in!");
           navigation.reset({
             index: 0,
-            routes: [{ name: "Home", params: {id: "htus", token: token} }],
+            routes: [{ name: "Home", params: { username: username, id 
+            :"htus" } }],
           });
+        } else {
+          Alert.alert("Sign in Failed", "Invalid Mobile Number or password");
         }
-      })
-      .catch((error) => {
-        Alert.alert("Error", "An error occurred while signing in.");
-      });
-  };
+    };
 
-  const navigateToSignUp = () => {
-    navigation.navigate("SignUp");
-  };
+
+    const navigateToSignUp = () => {
+      navigation.navigate("SignUp");
+    };
 
   return (
     <>
-      <View style={styles.container}>
+    <View style={styles.container}>
         <View style={styles.card}>
-          <Image
-            source={require("../../images/quikspot.png")}
-            style={{ width: 150, height: 50, marginVertical: 30 }}
-          />
-          <TextInput
-            style={[styles.input, mobileNumberIsFocused && styles.inputIsFocused]}
-            placeholder="Mobile Number"
-            onChangeText={(text) => setmobileNumber(text)}
-            onFocus={() => setmobileNumberIsFocused(true)}
-            onBlur={() => setmobileNumberIsFocused(false)}
-            value={mobileNumber}
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={[styles.input, passwordIsFocused && styles.inputIsFocused]}
-            placeholder="Password"
-            onFocus={() => setPasswordIsFocused(true)}
-            onBlur={() => setPasswordIsFocused(false)}
-            secureTextEntry={true}
-            onChangeText={(text) => setPassword(text)}
-            value={password}
-          />
-          {/* <View style={styles.forgotPassword}>
+            <Image
+                source={require("../../images/quikspot.png")}
+                style={{ width:150, height: 50, marginVertical: 30 }}
+            />
+            <TextInput
+                style={[styles.input,mobileNumberIsFocused && styles.inputIsFocused]}
+                placeholder="Mobile Number"
+                onChangeText={(text) => setmobileNumber(text)}
+                onFocus={() => setmobileNumberIsFocused(true)}
+                onBlur={() => setmobileNumberIsFocused(false)}
+                value={mobileNumber}
+                keyboardType="numeric"
+            />
+            <TextInput
+                style={[styles.input,passwordIsFocused && styles.inputIsFocused]}
+                placeholder="Password"
+                onFocus={() => setPasswordIsFocused(true)}
+                onBlur={() => setPasswordIsFocused(false)}
+                secureTextEntry={true}
+                onChangeText={(text) => setPassword(text)}
+                value={password}
+            />
+            {/* <View style={styles.forgotPassword}>
                 <TouchableOpacity onPress={()=>console.log("Forgot Password pressed")}>
                     <Text>Forgot Password?</Text>
                 </TouchableOpacity>
                 
             </View> */}
 
-          <View>
+            <View>
 
             <MyButton
-              title="Sign In"
-              onPress={() => handleLogin()}
-              buttonStyle={styles.button}
-            />
-          </View>
+                title="Sign In"
+                onPress={() => handleLogin()}
+                buttonStyle={styles.button}
+                />
+            </View>
         </View>
-      </View>
-      <View style={styles.signUpPart}>
+    </View>
+    <View style={styles.signUpPart}>
         <Text>Don't have an account? </Text>
         <Pressable onPress={() => navigateToSignUp()}>
-          <Text style={styles.signUp}>Sign Up</Text>
+        <Text style={styles.signUp}>Sign Up</Text>
         </Pressable>
-      </View>
+    </View>
     </>
   );
 };

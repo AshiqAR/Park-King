@@ -1,10 +1,12 @@
 import React from "react";
-import { Text, View, Alert, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
+import { Text, View, Alert, SafeAreaView, StyleSheet, TouchableOpacity, Image, ScrollView, TouchableWithoutFeedback } from "react-native";
 import { styles } from "../styles/profileStyles";
 import MyButton from "../components/MyButton";
 import { useRoute } from '@react-navigation/native';
+import tw from 'twrnc'
+import { Path, Svg } from "react-native-svg";
 
-const ProfilePage = ({ navigation}) => {
+const ProfilePage = ({ navigation }) => {
     const name = "Ashiq"
     const address = "V V House Kallara"
     const mobileNumber = "9056787878"
@@ -27,70 +29,109 @@ const ProfilePage = ({ navigation}) => {
     };
 
     const route = useRoute();
-  const dataReceived = route.params?.id;
-  const moveTopage = (page) => {
-    navigation.navigate(page)
-};
+    const dataReceived = route.params?.id;
+    const moveTopage = (page) => {
+        navigation.navigate(page)
+    };
     return (
         <SafeAreaView style={styles.container}>
-        <ScrollView style={styles.scrollView} contentContainerStyle={styles.contentContainerStyle}>
-            <View style={styles.userIcon}>
-                <Image 
-                    source={require('../images/userLogo.png')} 
-                    style={styles.userLogoImg}
-                />
+            <ScrollView style={tw.style(`flex-1`)} contentContainerStyle={styles.contentContainerStyle}>
+                {/* <View style={styles.profileContainer}>
+                    <View style={styles.userIcon}>
+                        <Image
+                            source={require('../images/userLogo.png')}
+                            style={styles.userLogoImg}
+                        />
+                    </View>
+                    <View style={styles.detailsView}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+                        marginBottom: 10,
+                     }}>
+                            <Text style={styles.text}>{name}</Text>
+                            <Text style={styles.text}>{mobileNumber}</Text>
+                        </View>
+                        <Text style={styles.text}>{email}</Text>
+                    </View>
+                </View>
+                <View style={styles.list}>
+                    <TouchableOpacity onPress={() => moveTopage("History")}>
+                        <Text style={styles.listText}>Your Previous Parkings</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.list}>
+                    <TouchableOpacity onPress={() => moveTopage("Details")}>
+                        <Text style={styles.listText}>Vehicle Details</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.list}>
+                    <TouchableOpacity onPress={() => moveTopage("Settings")}>
+                        <Text style={styles.listText}>Settings</Text>
+                    </TouchableOpacity>
+                </View>
+
+                <View style={styles.buttonContainer}>
+                    <MyButton
+                        title="Logout"
+                        onPress={() => logout()}
+                        buttonStyle={styles.logoutButton}
+                    />
+                    <MyButton
+                        title="Add My Parking Space"
+                        onPress={() => addMyParkingSpace()}
+                        buttonStyle={styles.button}
+                    />
+                </View> */}
+                <View style={tw.style(`rounded-[24px] w-full bg-[#F5B10130] mt-4 relative flex flex-row justify-start items-center pt-[16px] pb-[24px] px-[21px]`)}>
+                    <View style={tw.style(``)}>
+                        <Image
+                            source={require('../images/userLogo.png')}
+                            style={tw.style(`w-[50px] h-[50px]`)}
+                        />
+                    </View>
+                    <View style={tw.style(`flex flex-col justify-between ml-[18px]`)}>
+                        <Text style={tw.style(`text-[#242424] text-[18px] font-medium`)}>{name}</Text>
+                        <Text style={tw.style(`text-[#515151] text-[14px] font-light`)}>{email}</Text>
+                    </View>
+                    <TouchableWithoutFeedback>
+                        <View style={tw.style(`absolute top-4 right-4`)}>
+                            <Svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <Path d="M2.5 8.33333H11.6667V10H2.5V8.33333ZM2.5 6.66667H11.6667V5H2.5V6.66667ZM2.5 13.3333H8.33333V11.6667H2.5V13.3333ZM15.0083 10.725L15.6 10.1333C15.6771 10.0561 15.7687 9.99479 15.8695 9.95297C15.9703 9.91115 16.0784 9.88963 16.1875 9.88963C16.2966 9.88963 16.4047 9.91115 16.5055 9.95297C16.6063 9.99479 16.6979 10.0561 16.775 10.1333L17.3667 10.725C17.6917 11.05 17.6917 11.575 17.3667 11.9L16.775 12.4917L15.0083 10.725ZM14.4167 11.3167L10 15.7333V17.5H11.7667L16.1833 13.0833L14.4167 11.3167Z" fill="#242424" />
+                            </Svg>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
+
+                <View style={tw.style(`mt-[38px]`)}>
+                    <TouchableWithoutFeedback onPress={() => moveTopage("History")}>
+                        <View style={tw.style(`flex flex-row justify-between items-center border-b border-[#B8C6DB] py-[24px] px-[21px] w-full`)}>
+                            <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>Your Previous Parkings</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => moveTopage("Details")}>
+                        <View style={tw.style(`flex flex-row justify-between items-center border-b border-[#B8C6DB] py-[24px] px-[21px] w-full`)}>
+                            <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>Vehicle Details</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={() => moveTopage("Settings")}>
+                        <View style={tw.style(`flex flex-row justify-between items-center border-b border-[#B8C6DB] py-[24px] px-[21px] w-full`)}>
+                            <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>Settings</Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                </View>
+
+            </ScrollView>
+            <View style={tw.style(`absolute bottom-[24px] left-0 right-0 flex flex-col gap-[10px] px-[24px]`)}>
+                <TouchableWithoutFeedback onPress={() => addMyParkingSpace()}>
+                    <View style={tw.style(`bg-[#C6D3FF5E] py-[20px] rounded-[7px] border border-[#0011AA] `)}>
+                        <Text style={tw.style(`text-[#262628] text-[18px] font-medium text-center`)}>Add My Parking Space</Text>
+                    </View>
+                </TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => logout()}>
+                    <View style={tw.style(`bg-[#FB6D6D17] py-[20px] rounded-[7px] border border-[#FB6D6D] `)}>
+                        <Text style={tw.style(`text-[#FF0000] text-[18px] font-medium text-center`)}>Logout</Text>
+                    </View>
+                </TouchableWithoutFeedback>
             </View>
-            <View style={styles.detailsView}>
-                <Text style={styles.label}>Name:{dataReceived}</Text>
-                <Text style={styles.text}>{name}</Text>
-
-                <Text style={styles.label}>Mobile Number:</Text>
-                <Text style={styles.text}>{mobileNumber}</Text>
-
-                <Text style={styles.label}>Email Id:</Text>
-                <Text style={styles.text}>{email}</Text>
-
-                <Text style={styles.label}>Address:</Text>
-                <Text style={styles.text}>{address}</Text>
-
-                <Text style={styles.label}>Pincode:</Text>
-                <Text style={styles.text}>{pincode}</Text>
-
-
-            </View>
-            <View style={styles.list}>
-                <TouchableOpacity onPress={()=>moveTopage("History")}>
-                    <Text style={styles.listText}>Your Previous Parkings</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.list}>
-                <TouchableOpacity onPress={()=>moveTopage("Details")}>
-                    <Text style={styles.listText}>Vehicle Details</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.list}>
-                <TouchableOpacity onPress={()=>moveTopage("Settings")}>
-                    <Text style={styles.listText}>Settings</Text>
-                </TouchableOpacity>
-            </View>
-
-        <View style={styles.buttonContainer}>
-
-            {/* <TouchableOpacity onPress={()=>logout()}>
-                <Text style={styles.logoutButton}>Logout</Text>
-            </TouchableOpacity> */}
-            <MyButton 
-                title="Logout"
-                onPress={() => logout()}
-                buttonStyle={styles.logoutButton}
-                />
-            <MyButton 
-                title="Add My Parking Space"
-                onPress={() => addMyParkingSpace()}
-                buttonStyle={styles.button}
-                />
-        </View>
-                </ScrollView>
         </SafeAreaView>
     )
 }

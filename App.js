@@ -39,7 +39,7 @@ function App() {
       "id": "1",
       "name": 'Ashiq',
       "email": 'ashiq3489@gmail.com',
-      "mobileNumber": '9074873430',
+      "mobileNumber": '9496960369',
       "address": 'V V House Kallara',
       "pincode": '691506',
       "totalBookings": "9",

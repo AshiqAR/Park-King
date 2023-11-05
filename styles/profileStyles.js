@@ -4,34 +4,44 @@ export const styles = StyleSheet.create({
   container: {
     paddingTop: StatusBar.currentHeight,
     flex: 1,
+    display: 'flex',
     flexDirection: 'column',
+    backgroundColor: 'white',
   },
-    scrollView: {
-    },
   contentContainerStyle: {
+    paddingHorizontal: 24,
     // alignItems: 'center',
   },
   userIcon: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+    // borderRadius: "50%"
   },
   userLogoImg: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
+    width: 40,
+    height: 40,
+  },
+  profileContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   detailsView: {
-    padding: 20,
+    // padding: 20,
+    flex: 2,
+    width: '100%',
+    paddingRight: 20,
   },
   label: {
-    fontSize: 23,
+    fontSize: 16,
     paddingTop: 13,
     paddingBottom: 5,
     fontWeight: 'bold',
   },
-  text:{
-    fontSize: 20,
+  text: {
+    fontSize: 16,
   },
   listText: {
     fontSize: 20,
@@ -69,21 +79,21 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-    logoutButton: {
-        backgroundColor: 'red',
-        marginVertical: 10,
-        padding: 10,
-        borderRadius: 5,
-        shadowColor: 'black',
-        shadowOpacity: 1,
-        shadowRadius: 3,
-        elevation: 5,
-        color: 'pink',
-        fontSize: 20,
-        width: "45%",
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+  logoutButton: {
+    backgroundColor: 'red',
+    marginVertical: 10,
+    padding: 10,
+    borderRadius: 5,
+    shadowColor: 'black',
+    shadowOpacity: 1,
+    shadowRadius: 3,
+    elevation: 5,
+    color: 'pink',
+    fontSize: 20,
+    width: "45%",
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default styles;
