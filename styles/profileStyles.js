@@ -7,10 +7,10 @@ export const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white',
+    width: '100%',
   },
   contentContainerStyle: {
     paddingHorizontal: 24,
-    // alignItems: 'center',
   },
   userIcon: {
     flex: 1,

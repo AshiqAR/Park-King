@@ -5,23 +5,16 @@ import MyButton from "../components/MyButton";
 import { useRoute } from '@react-navigation/native';
 import tw from 'twrnc'
 import { Path, Svg } from "react-native-svg";
+import {useAuth} from '../Context/AuthContext';
 
 const ProfilePage = ({ navigation }) => {
-    const name = "Ashiq"
-    const address = "V V House Kallara"
-    const mobileNumber = "9056787878"
-    const email = "ahsiq374@gmail.com"
-    const pincode = "567558"
+    const { signOut, user } = useAuth();
+    const {name, address, phonenumber, email, pincode} = user;
     const totalBookings = "5"
 
 
     const logout = () => {
-        // Alert.alert("You are logged out !")
-        navigation.navigate("Login")
-        navigation.reset({
-            index: 0,
-            routes: [{ name: "Login" }],
-        });
+        signOut();
     };
 
     const addMyParkingSpace = () => {

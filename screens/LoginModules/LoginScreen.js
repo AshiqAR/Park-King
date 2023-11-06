@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import MyButton from "../../components/MyButton";
+import {useAuth} from '../../Context/AuthContext';
 import {
   View,
   Text,
@@ -13,7 +13,8 @@ import {
 import { styles } from '../../styles/loginStyles.js'
 import {ip} from '../../globals.js'
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation, route }) => {
+  const { signIn } = useAuth();
 
   const [mobileNumber, setmobileNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -45,11 +46,7 @@ const LoginScreen = ({ navigation }) => {
       })
       .then((data) => {
         if (data.success == "true") {
-          token = data.token;
-          navigation.reset({
-            index: 0,
-            routes: [{ name: "Home", params: {id: "htus", token: token} }],
-          });
+          signIn(data.userDetails);
         }
       })
       .catch((error) => {

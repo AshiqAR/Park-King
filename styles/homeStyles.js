@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    container:{
+    container: {
         // flex: 1,
         // flexDirection: "column",
         // alignItems: "center",
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
         backgroundColor: 'green',
         marginVertical: 10,
         padding: 10,
-        borderRadius: 5 ,
+        borderRadius: 5,
         shadowColor: 'black',
         shadowOpacity: 1,
         shadowRadius: 3,
@@ -47,4 +47,19 @@ export const styles = StyleSheet.create({
         // paddingBottom: 20,
         // elevation: 3,
     },
+    userLogo: {
+        width: 45,
+        height: 45,
+        padding: 5,
+        borderRadius: 50,
+        backgroundColor: "white",
+    },
+    topacity:{
+        position: "absolute",
+        top: -55,
+        right: 0,
+        marginHorizontal: 15,
+        marginVertical: 5,
+        zIndex: 1,
+    }
 })

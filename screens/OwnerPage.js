@@ -138,7 +138,7 @@ const OwnerPage = ({ navigation }) => {
         </View>
 
       </ScrollView> */}
-      <ScrollView style={tw.style(`flex flex-col`)} contentContainerStyle={tw.style(`justify-start items-center`)}>
+      <ScrollView style={tw.style(`flex flex-col`)} contentContainerStyle={tw.style(`justify-start items-center px-7`)}>
         <View style={tw.style(`mt-[32px]`)}>
           <Image
             source={require("../images/location.jpg")}
