@@ -7,7 +7,7 @@ export default function Header (){
       <View style={styles.ourLogo}>
         <Image
           style={styles.img}
-          source={require('../images/quikspot.png')}
+          source={require('../assets/quikspot.png')}
         />
       </View>
     </View>

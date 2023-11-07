@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MyButton from "../../components/MyButton";
+import MyButton from "../../assets/components/MyButton";
 import { ip } from "../../globals.js";
 import {
   View,
@@ -93,7 +93,7 @@ const SignupScreen = ({ navigation }) => {
         <View style={styles.container}>
           <View style={styles.card}>
             <Image
-              source={require("../../images/quikspot.png")}
+              source={require("../../assets/images/quikspot.png")}
               style={{ width: 150, height: 50, marginVertical: 30 }}
             />
             <TextInput

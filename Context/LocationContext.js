@@ -13,8 +13,9 @@ export const LocationProvider = ({ children }) => {
             setErrorMsg('Permission to access location was denied');
             return;
         }
+        let newlocation = await Location.getCurrentPositionAsync({});
         do {
-            var newlocation = await Location.getCurrentPositionAsync({});
+            newlocation = await Location.getCurrentPositionAsync({});
             if (newlocation == null || newlocation == undefined) {
                 await new Promise(resolve => setTimeout(resolve, 500));
             }

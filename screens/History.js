@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { ScrollView, Button, FlatList } from 'react-native';
 import { Icon } from '@rneui/themed';
-import MyButton from "../components/MyButton.js";
+import MyButton from "../assets/components/MyButton.js";
 import * as DocumentPicker from 'expo-document-picker';
 import tw from 'twrnc'
 

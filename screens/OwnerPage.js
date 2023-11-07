@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { ScrollView, Button } from 'react-native';
 import { Icon } from '@rneui/themed';
-import MyButton from "../components/MyButton.js";
+import MyButton from "../assets/components/MyButton.js";
 import * as DocumentPicker from 'expo-document-picker';
 import tw from 'twrnc'
 
@@ -141,7 +141,7 @@ const OwnerPage = ({ navigation }) => {
       <ScrollView style={tw.style(`flex flex-col`)} contentContainerStyle={tw.style(`justify-start items-center px-7`)}>
         <View style={tw.style(`mt-[32px]`)}>
           <Image
-            source={require("../images/location.jpg")}
+            source={require("../assets/images/location.jpg")}
             style={tw.style(`w-[180px] h-[180px] rounded-full`)}
           />
         </View>

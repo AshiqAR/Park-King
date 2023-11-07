@@ -4,7 +4,7 @@ import MapView, { Marker } from "react-native-maps";
 import locs from "./MarkLocations";
 import { useLocation } from "../Context/LocationContext";
 
-import MyButton from "../components/MyButton.js";
+import MyButton from "../assets/components/MyButton.js";
 import {
 	View,
 	Image,
@@ -20,18 +20,32 @@ const HomeScreen = ({ navigation, route }) => {
 				coordinate={{ latitude: latitude, longitude: longitude }}
 				title={title}
 				description={description}
-				image={require('../images/parkSpace.png')}
+				image={require('../assets/images/parkSpace.png')}
 				style={{ width: 50, height: 50 }}
 			/>
 		);
 	};
 
 	const mapRef = useRef(null);
-	// const latitude = 9.057485;
-	// const longitude = 76.536725;
-	// const desiredDistanceInMeters = 800;
 	// const latitudeDelta = desiredDistanceInMeters / 111000;
 	// const longitudeDelta = desiredDistanceInMeters / (111000 * Math.cos(latitude * Math.PI / 180));
+	const loadCurrentLocation = () => {
+		if (mapRef.current) {
+			mapRef.current.animateCamera(
+				{
+					center: {
+						latitude: location.coords.latitude,
+						longitude: location.coords.longitude
+					},
+					zoom: 16,
+					heading: 0,
+					pitch: 0,
+				},
+				{ duration: 500 }
+			);
+		}
+	};
+
 	useEffect(() => {
 		(async () => {
 			setTimeout(() => {
@@ -61,7 +75,7 @@ const HomeScreen = ({ navigation, route }) => {
 					onPress={() => navigation.navigate("Profile")}
 				>
 					<Image
-						source={require('../images/userLogo.png')}
+						source={require('../assets/images/userLogo.png')}
 						style={styles.userLogo}
 					/>
 				</TouchableOpacity>
@@ -81,7 +95,7 @@ const HomeScreen = ({ navigation, route }) => {
 				<View style={styles.bottomBar}>
 					<MyButton
 						title="Look for Nearby Parking Spaces"
-						onPress={() => { console.log("pressed nearby location") }}
+						onPress={() => { loadCurrentLocation() }}
 						buttonStyle={styles.button}
 					/>
 				</View>

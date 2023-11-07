@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MyButton from "../../components/MyButton";
+import MyButton from "../../assets/components/MyButton";
 import {useAuth} from '../../Context/AuthContext';
 import {
   View,
@@ -42,6 +42,7 @@ const LoginScreen = ({ navigation, route }) => {
         }
         else {
           Alert.alert("Sign in Failed", "Invalid Mobile Number or password");
+          return {success: "false"};
         }
       })
       .then((data) => {
@@ -63,7 +64,7 @@ const LoginScreen = ({ navigation, route }) => {
       <View style={styles.container}>
         <View style={styles.card}>
           <Image
-            source={require("../../images/quikspot.png")}
+            source={require("../../assets/images/quikspot.png")}
             style={{ width: 150, height: 50, marginVertical: 30 }}
           />
           <TextInput

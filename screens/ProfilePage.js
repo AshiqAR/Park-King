@@ -70,7 +70,7 @@ const ProfilePage = ({ navigation }) => {
                 >
                     <View style={tw.style(``)}>
                         <Image
-                            source={require('../images/userLogo.png')}
+                            source={require('../assets/images/userLogo.png')}
                             style={tw.style(`w-[50px] h-[50px]`)}
                         />
                     </View>
