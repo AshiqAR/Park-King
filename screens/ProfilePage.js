@@ -97,7 +97,7 @@ const ProfilePage = ({ navigation }) => {
                 <View style={tw.style(`mt-[38px]`)}>
                     <TouchableWithoutFeedback onPress={() => moveTopage("History")}>
                         <View style={tw.style(`flex flex-row justify-between items-center border-b border-[#B8C6DB] py-[24px] px-[21px] w-full`)}>
-                            <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>Your Previous Parkings</Text>
+                            <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>My Previous Parkings</Text>
                         </View>
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={() => moveTopage("Details")}>

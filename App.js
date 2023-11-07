@@ -4,22 +4,22 @@ import { UserStackScreen, AuthStackScreen } from './Stacks';
 import { AuthProvider, useAuth } from './Context/AuthContext';
 
 function Account() {
-  const { user } = useAuth();
-  if (user) {
-    return <UserStackScreen />;
-  } else {
-    return <AuthStackScreen />;
-  }
+	const { user } = useAuth();
+	if (user) {
+		return <UserStackScreen />;
+	} else {
+		return <AuthStackScreen />;
+	}
 }
 
 function App() {
-  return (
-    <AuthProvider>
-      <NavigationContainer>
-        <Account />
-      </NavigationContainer>
-    </AuthProvider>
-  );
+	return (
+		<AuthProvider>
+			<NavigationContainer>
+				<Account />
+			</NavigationContainer>
+		</AuthProvider>
+	);
 }
 export default App;
 
