@@ -12,7 +12,9 @@ export default function Loading({navigation}) {
       });
     }
   }, [fetchingLocation]);
-  updateCurrentLocation();
+  useEffect(() => {
+    updateCurrentLocation();
+  }, []);
 
   return (
     <View style={styles.container}>

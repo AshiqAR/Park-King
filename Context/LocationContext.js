@@ -8,28 +8,25 @@ export const LocationProvider = ({ children }) => {
     const [fetchingLocation, setFetchingLocation] = useState(true);
 
     const updateCurrentLocation = async () => {
+        setFetchingLocation(true);
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== 'granted') {
             setErrorMsg('Permission to access location was denied');
             return;
         }
         let newlocation = await Location.getCurrentPositionAsync({});
-        do {
+        console.log(newlocation);
+        while(newlocation == null || newlocation == undefined){
+            await new Promise(resolve => setTimeout(resolve, 500));
             newlocation = await Location.getCurrentPositionAsync({});
-            if (newlocation == null || newlocation == undefined) {
-                await new Promise(resolve => setTimeout(resolve, 500));
-            }
-            else {
-                break;
-            }
-        } while (newlocation == null || newlocation == undefined);
+        }
 
-        setFetchingLocation(false);
         setCurrentLocation(newlocation);
+        setFetchingLocation(false);
     }
 
     return (
-        <LocationContext.Provider value={{ location, fetchingLocation, updateCurrentLocation }}>
+        <LocationContext.Provider value={{ location, fetchingLocation, setFetchingLocation, updateCurrentLocation }}>
             {children}
         </LocationContext.Provider>
     );

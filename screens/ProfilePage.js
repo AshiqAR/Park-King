@@ -16,6 +16,7 @@ import { useRoute } from '@react-navigation/native';
 import tw from 'twrnc'
 import { Path, Svg } from "react-native-svg";
 import { useAuth } from '../Context/AuthContext';
+import { useLocation } from "../Context/LocationContext";
 
 const ExpandableView = ({ expanded = false }) => {
     const [height] = useState(new Animated.Value(0));
@@ -39,12 +40,14 @@ const ExpandableView = ({ expanded = false }) => {
 
 const ProfilePage = ({ navigation }) => {
     const { signOut, user } = useAuth();
+    const { setFetchingLocation } = useLocation();
     const { name, address, phonenumber, email, pincode } = user;
-    const totalBookings = "5"
+    const totalBookings = "5";
     const [isExpanded, setIsExpanded] = useState(false);
 
 
     const logout = () => {
+        setFetchingLocation(true);
         signOut();
     };
 
