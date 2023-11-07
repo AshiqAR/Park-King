@@ -5,6 +5,9 @@ import { useLocation } from '../../Context/LocationContext';
 export default function Loading({navigation}) {
   const { fetchingLocation, updateCurrentLocation } = useLocation();
   useEffect(() => {
+    updateCurrentLocation();
+  }, []);
+  useEffect(() => {
     if (!fetchingLocation){
       navigation.reset({
         index: 0,
@@ -12,9 +15,7 @@ export default function Loading({navigation}) {
       });
     }
   }, [fetchingLocation]);
-  useEffect(() => {
-    updateCurrentLocation();
-  }, []);
+  
 
   return (
     <View style={styles.container}>
