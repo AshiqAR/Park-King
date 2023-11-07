@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "ParkKing",
-    "slug": "ParkKing",
+    "name": "quikSpot",
+    "slug": "quikSpot",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/app-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -15,7 +15,7 @@
       [
         "expo-location",
         {
-          "isAndroidBackgroundLocationEnabled": "Allow ParKing to use your location."
+          "isAndroidBackgroundLocationEnabled": "Allow quikSpot to use your location."
         }
       ]
     ],
@@ -27,12 +27,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/splash.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/splash.png"
     }
   }
 }
