@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View, Text, ActivityIndicator } from 'react-native';
+import { useLocation } from '../../Context/LocationContext';
 
-export default function Loading() {
+export default function Loading({navigation}) {
+  const { fetchingLocation, updateCurrentLocation } = useLocation();
+  useEffect(() => {
+    if (!fetchingLocation){
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Home' }],
+      });
+    }
+  }, [fetchingLocation]);
+  updateCurrentLocation();
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Fetching Location Details...</Text>
@@ -10,14 +22,7 @@ export default function Loading() {
   )
 }
 
-
 const styles = StyleSheet.create({
-    // container: {
-    //     position: 'absolute',
-    //     backgroundColor: "transparent",
-    //     width: '100%',
-    //     height: '50%',
-    // }
     container: {
       height: '80%',
       justifyContent: 'center',
