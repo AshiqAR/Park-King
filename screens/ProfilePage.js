@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import {
     Text,
     View,
@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import { styles } from "../styles/profileStyles";
-import MyButton from "../components/MyButton";
+import MyButton from "../assets/components/MyButton";
 import { useRoute } from '@react-navigation/native';
 import tw from 'twrnc'
 import { Path, Svg } from "react-native-svg";
@@ -22,18 +22,18 @@ const ExpandableView = ({ expanded = false }) => {
 
     useEffect(() => {
         Animated.timing(height, {
-            toValue: !expanded ? 200 : 0,
+            toValue: expanded ? height : 0,
             duration: 150,
-            useNativeDriver: false
+            useNativeDriver: false,
         }).start();
-    }, [expanded, height]);
+    }, [expanded]);
 
     console.log('rerendered');
-
     return (
         <Animated.View
             style={{ height, backgroundColor: "orange" }}
-        ></Animated.View>
+        >
+        </Animated.View>
     );
 };
 
@@ -59,7 +59,13 @@ const ProfilePage = ({ navigation }) => {
             <ScrollView style={tw.style(`flex-1`)} contentContainerStyle={styles.contentContainerStyle}>
                 <TouchableOpacity
                     activeOpacity={0.6}
-                    style={tw.style(`rounded-[24px] w-full bg-[#F5B10130] mt-4 relative flex flex-row justify-start items-center pt-[16px] pb-[24px] px-[21px]`)}
+                    style={
+                        !isExpanded
+                            ?
+                            tw.style(`rounded-[24px] w-full bg-[#F5B10130] mt-4 relative flex flex-row items-center pt-[16px] pb-[24px] px-[21px]`)
+                            :
+                            tw.style(`rounded-[24px] w-full bg-[#F5B10130] mt-4 relative flex flex-col items-center pt-[16px] pb-[24px] px-[21px]`)
+                    }
                     onPress={() => setIsExpanded(!isExpanded)}
                 >
                     <View style={tw.style(``)}>
@@ -71,6 +77,13 @@ const ProfilePage = ({ navigation }) => {
                     <View style={tw.style(`flex flex-col justify-between ml-[18px]`)}>
                         <Text style={tw.style(`text-[#242424] text-[18px] font-medium`)}>{name}</Text>
                         <Text style={tw.style(`text-[#515151] text-[14px] font-light`)}>{email}</Text>
+                        {isExpanded && (
+                            <>
+                            <Text style={tw.style(`text-[#515151] text-[14px] font-light`)}>{pincode}</Text>
+                            <Text style={tw.style(`text-[#515151] text-[14px] font-light`)}>{address}</Text>
+                            <Text style={tw.style(`text-[#515151] text-[14px] font-light`)}>{phonenumber}</Text>
+                            </>
+                        )}
                     </View>
                     <TouchableWithoutFeedback>
                         <View style={tw.style(`absolute top-4 right-4`)}>
@@ -80,7 +93,6 @@ const ProfilePage = ({ navigation }) => {
                         </View>
                     </TouchableWithoutFeedback>
                 </TouchableOpacity>
-                <ExpandableView expanded={isExpanded} />
 
                 <View style={tw.style(`mt-[38px]`)}>
                     <TouchableWithoutFeedback onPress={() => moveTopage("History")}>
