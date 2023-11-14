@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
 import * as Location from "expo-location";
 import axios from 'axios';
+import {API_URL, API_KEY} from '@env';
 
 const LocationContext = createContext();
-
 
 
 const getLocation = async () => {
@@ -30,18 +30,27 @@ export const LocationProvider = ({ children }) => {
     const reverseGeocode = async (location) => {
         try {
             const { latitude, longitude } = location.coords;
-            const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
+            const url = `${API_URL}q=${latitude},${longitude}&key=${API_KEY}`;
             const { data } = await axios.get(url);
-            console.log(data.name);
-            setPlace(data.name);
         }
-        catch (error) {
+        catch(error) {
             console.log(error);
         }
     };
 
     const getCoordinates = async (address) => {
-
+        const city = 'ulloor';
+        const district = 'thiruvananthapuram';
+        const state = 'kerala';
+        const country = 'india';
+        try {
+            const { latitude, longitude } = location.coords;
+            const url = `${API_URL}q=${city},${district},${state},${country}&key=${API_KEY}`;
+            const { data } = await axios.get(url);
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
 
     const updateCurrentLocation = async () => {
@@ -57,7 +66,6 @@ export const LocationProvider = ({ children }) => {
 
                 console.log('Current Position:', newLocation);
                 setCurrentLocation(newLocation);
-                reverseGeocode(newLocation);
 
                 setFetchingLocation(false);
             } else {

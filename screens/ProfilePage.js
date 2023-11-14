@@ -40,7 +40,6 @@ const ExpandableView = ({ expanded = false }) => {
 
 const ProfilePage = ({ navigation }) => {
     const { signOut, user } = useAuth();
-    const { setFetchingLocation } = useLocation();
     const { name, address, phonenumber, email, pincode } = user;
     const totalBookings = "5";
     const [isExpanded, setIsExpanded] = useState(false);
