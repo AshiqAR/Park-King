@@ -37,7 +37,7 @@ function UserStackScreen() {
                     },
                 }}
             >
-                <UserStack.Screen name="Loading" component={Loading} />
+                {/* <UserStack.Screen name="Loading" component={Loading} /> */}
                 <UserStack.Screen name="Home" component={HomeScreen} />
                 <UserStack.Screen name="Profile" component={ProfilePage} />
                 <UserStack.Screen name="ParkOwner" component={OwnerPage} />

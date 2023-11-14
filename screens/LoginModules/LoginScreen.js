@@ -25,8 +25,8 @@ const LoginScreen = ({ navigation, route }) => {
     const apiUrl = ip+"/signin";
 
     const requestData = {
-      mobileNumber: mobileNumber,
-      password: password,
+      mobileNumber: "9074873430",
+      password: "ashiq",
     };
 
     fetch(apiUrl, {
@@ -54,6 +54,7 @@ const LoginScreen = ({ navigation, route }) => {
         Alert.alert("Error", "An error occurred while signing in.");
       });
   };
+  handleLogin();
 
   const navigateToSignUp = () => {
     navigation.navigate("SignUp");

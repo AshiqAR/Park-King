@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { styles } from '../styles/homeStyles'
 import MapView, { Marker } from "react-native-maps";
 import locs from "./MarkLocations";
 import { useLocation } from "../Context/LocationContext";
+import Loading from "../assets/components/Loading.js";
 
 import MyButton from "../assets/components/MyButton.js";
 import {
@@ -11,8 +12,8 @@ import {
 	TouchableOpacity,
 } from "react-native";
 
-const HomeScreen = ({ navigation, route }) => {
-	const { location } = useLocation();
+const HomeScreen = ({ navigation }) => {
+	const { location, fetchingLocation, updateCurrentLocation } = useLocation();
 
 	const CustomMarker = ({ latitude, longitude, title, description }) => {
 		return (
@@ -37,7 +38,7 @@ const HomeScreen = ({ navigation, route }) => {
 						latitude: location.coords.latitude,
 						longitude: location.coords.longitude
 					},
-					zoom: 16,
+					zoom: 19,
 					heading: 0,
 					pitch: 0,
 				},
@@ -47,60 +48,69 @@ const HomeScreen = ({ navigation, route }) => {
 	};
 
 	useEffect(() => {
-		(async () => {
-			setTimeout(() => {
-				if (mapRef.current) {
-					mapRef.current.animateCamera(
-						{
-							center: {
-								latitude: location.coords.latitude,
-								longitude: location.coords.longitude
+		if (location != null || location != undefined) {
+			(async () => {
+				setTimeout(() => {
+					if (mapRef.current) {
+						mapRef.current.animateCamera(
+							{
+								center: {
+									latitude: location.coords.latitude,
+									longitude: location.coords.longitude
+								},
+								zoom: 17,
+								heading: 0,
+								pitch: 0,
 							},
-							zoom: 16,
-							heading: 0,
-							pitch: 0,
-						},
-						{ duration: 0 }
-					);
-				}
-			}, 100);
-		})();
+							{ duration: 0 }
+						);
+					}
+				}, 100);
+			})();
+		}
+	}, [location]);
+
+	useEffect(() => {
+		updateCurrentLocation();
 	}, []);
 
 	return (
-		<View style={styles.container}>
-			<View>
-				<TouchableOpacity
-					style={styles.topacity}
-					onPress={() => navigation.navigate("Profile")}
-				>
-					<Image
-						source={require('../assets/images/userLogo.png')}
-						style={styles.userLogo}
-					/>
-				</TouchableOpacity>
-				<MapView ref={mapRef} showsMyLocationButton={true} style={styles.map}>
-					<Marker
-						coordinate={{
-							latitude: location.coords.latitude,
-							longitude: location.coords.longitude,
-						}}
-						title={"You are here"}
-					/>
+		fetchingLocation ? <Loading /> :
+			<>
+				<View style={styles.container}>
+					<View>
+						<TouchableOpacity
+							style={styles.topacity}
+							onPress={() => navigation.navigate("Profile")}
+						>
+							<Image
+								source={require('../assets/images/userLogo.png')}
+								style={styles.userLogo}
+							/>
+						</TouchableOpacity>
+						<MapView ref={mapRef} showsMyLocationButton={true} style={styles.map}>
+							<Marker
+								coordinate={{
+									latitude: location.coords.latitude,
+									longitude: location.coords.longitude,
+								}}
+								title={"You are here"}
+							/>
 
-					{locs.map((marker, index) => (
-						<CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description} />
-					))}
-				</MapView>
-				<View style={styles.bottomBar}>
-					<MyButton
-						title="Look for Nearby Parking Spaces"
-						onPress={() => { loadCurrentLocation() }}
-						buttonStyle={styles.button}
-					/>
+							{locs.map((marker, index) => (
+								<CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description} />
+							))}
+						</MapView>
+						<View style={styles.bottomBar}>
+							<MyButton
+								title="Look for Nearby Parking Spaces"
+								onPress={() => { loadCurrentLocation() }}
+								buttonStyle={styles.button}
+							/>
+						</View>
+					</View>
 				</View>
-			</View>
-		</View>
+			</>
 	);
 }
 

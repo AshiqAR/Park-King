@@ -47,7 +47,6 @@ const ProfilePage = ({ navigation }) => {
 
 
     const logout = () => {
-        setFetchingLocation(true);
         signOut();
     };
 
