@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { styles } from '../styles/homeStyles'
 import MapView, { Marker } from "react-native-maps";
-import locs from "./MarkLocations";
 import { useLocation } from "../Context/LocationContext";
+import { useParkSpaceContext } from "../Context/ParkSpaceContext";
 import Loading from "../assets/components/Loading.js";
+import BottomCarousel from "../assets/components/BottomCarousel.js";
 
 import MyButton from "../assets/components/MyButton.js";
 import {
@@ -14,13 +15,18 @@ import {
 
 const HomeScreen = ({ navigation }) => {
 	const { location, fetchingLocation, updateCurrentLocation } = useLocation();
+	const { index, parkAreas, lookingForSpaces, handleLookForSpacesClick } = useParkSpaceContext();
 
-	const CustomMarker = ({ latitude, longitude, title, description }) => {
+	const handleLocateMeClick = () => {
+		loadCurrentLocation();
+	}
+
+	const CustomMarker = ({ coords, name, no_free_slots }) => {
 		return (
 			<Marker
-				coordinate={{ latitude: latitude, longitude: longitude }}
-				title={title}
-				description={description}
+				coordinate={{ latitude: coords.latitude, longitude: coords.longitude }}
+				title={name}
+				description={`${no_free_slots} slots available`}
 				image={require('../assets/images/parkSpace.png')}
 				style={{ width: 50, height: 50 }}
 			/>
@@ -38,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
 						latitude: location.coords.latitude,
 						longitude: location.coords.longitude
 					},
-					zoom: 19,
+					zoom: 17,
 					heading: 0,
 					pitch: 0,
 				},
@@ -46,6 +52,29 @@ const HomeScreen = ({ navigation }) => {
 			);
 		}
 	};
+
+	const loadToParkSpaceLocation = (coords) => {
+		if (mapRef.current) {
+			mapRef.current.animateCamera(
+				{
+					center: {
+						latitude: coords.latitude,
+						longitude: coords.longitude
+					},
+					zoom: 15,
+					heading: 0,
+					pitch: 0,
+				},
+				{ duration: 1000 }
+			);
+		}
+	};
+
+	useEffect(() => {
+		if (index != null) {
+			loadToParkSpaceLocation(parkAreas[index].coords);
+		}
+	}, [index]);
 
 	useEffect(() => {
 		if (location != null || location != undefined) {
@@ -97,17 +126,25 @@ const HomeScreen = ({ navigation }) => {
 								title={"You are here"}
 							/>
 
-							{locs.map((marker, index) => (
-								<CustomMarker key={index} latitude={marker.latitude} longitude={marker.longitude} title={marker.title} description={marker.description} />
+							{parkAreas.map((parkArea, i) => (
+								<CustomMarker key={i} coords={parkArea.coords} name={parkArea.name} no_free_slots={parkArea.no_free_slots} />
 							))}
 						</MapView>
-						<View style={styles.bottomBar}>
-							<MyButton
-								title="Look for Nearby Parking Spaces"
-								onPress={() => { loadCurrentLocation() }}
-								buttonStyle={styles.button}
-							/>
-						</View>
+
+						{lookingForSpaces ?
+							<BottomCarousel
+								handleLocateMeClick={handleLocateMeClick}
+							>
+							</BottomCarousel>
+							:
+							<View style={styles.bottomBar}>
+								<MyButton
+									title="Look for Nearby Parking Spaces"
+									onPress={() => { handleLookForSpacesClick() }}
+									buttonStyle={styles.button}
+								/>
+							</View>
+						}
 					</View>
 				</View>
 			</>
