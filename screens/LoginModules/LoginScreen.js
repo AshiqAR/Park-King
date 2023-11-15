@@ -11,10 +11,11 @@ import {
 } from "react-native";
 
 import { styles } from '../../styles/loginStyles.js'
-import {ip} from '../../globals.js'
+import {BACKEND_URL} from '@env'
 
 const LoginScreen = ({ navigation, route }) => {
   const { signIn } = useAuth();
+  const url = BACKEND_URL;
 
   const [mobileNumber, setmobileNumber] = useState("");
   const [password, setPassword] = useState("");
@@ -22,7 +23,7 @@ const LoginScreen = ({ navigation, route }) => {
   const [passwordIsFocused, setPasswordIsFocused] = useState(false);
 
   const handleLogin = () => {
-    const apiUrl = ip+"/signin";
+    const apiUrl = url+"/signin";
 
     const requestData = {
       mobileNumber: "9074873430",

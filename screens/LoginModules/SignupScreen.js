@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MyButton from "../../assets/components/MyButton";
-import { ip } from "../../globals.js";
+import { BACKEND_URL } from "@env";
 import {
   View,
   Text,
@@ -41,7 +41,7 @@ const SignupScreen = ({ navigation }) => {
     }
     else {
 
-      const apiUrl = ip + "/signup";
+      const apiUrl = BACKEND_URL + "/signup";
       const requestData = {
         name: name,
         email: email,
