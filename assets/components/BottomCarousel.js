@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 import { useParkSpaceContext } from "../../Context/ParkSpaceContext";
+const gtSymbol = require('../../assets/greater-than-symbol.png')
+const ltSymbol = require('../../assets/less-than-symbol.png')
 
 const BottomCarousel = (props) => {
     const { index, parkAreas, setIndex, handleCarouselClose } = useParkSpaceContext();
@@ -32,9 +34,8 @@ const BottomCarousel = (props) => {
                 </View>
 
                 <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', height: 100, width: '95%', zIndex: 1, backgroundColor: 'lightblue', alignSelf: 'center', borderRadius: 9, }}>
-                    <TouchableOpacity onPress={handlePrevious} style={{ height: '100%', backgroundColor: 'gray', justifyContent: 'center', borderBottomLeftRadius: 9, borderTopLeftRadius: 9 }}>
-                        {/* <Image source={require('../images/arrow-left.png')} style={{ width: 50, height: 50 }} /> */}
-                        <Text>Prev</Text>
+                    <TouchableOpacity onPress={handlePrevious} style={{ height: '100%', justifyContent: 'center', borderBottomLeftRadius: 9, borderTopLeftRadius: 9 }}>
+                        <Image source={ltSymbol} style={{ width: 50, height: 50 }} />
                     </TouchableOpacity>
                     <View style={{flex: 1, alignItems: 'center'}}>
                         <Text style={{ fontSize: 20, color: 'blue', fontWeight: 'bold' }}>{parkAreas[index].name}</Text>
@@ -42,9 +43,8 @@ const BottomCarousel = (props) => {
                         <Text style={{ fontSize: 10 }}>Distance: {parkAreas[index].distance}m</Text>
                         <Text style={{ fontSize: 15, color: 'brown' }}>Rating: {parkAreas[index].average_rating}   Price Per Hour: Rs.{parkAreas[index].price_per_hr}</Text>
                     </View>
-                    <TouchableOpacity onPress={handleNext} style={{ height: '100%', backgroundColor: 'gray', justifyContent: 'center', borderBottomRightRadius: 9, borderTopRightRadius: 9 }}>
-                        {/* <Image source={require('../images/arrow-right.png')} style={{ width: 50, height: 50 }} /> */}
-                        <Text>Next</Text>
+                    <TouchableOpacity onPress={handleNext} style={{ height: '100%', justifyContent: 'center', borderBottomRightRadius: 9, borderTopRightRadius: 9 }}>
+                        <Image source={gtSymbol} style={{ width: 50, height: 50 }} />
                     </TouchableOpacity>
                 </View>
             </View>
