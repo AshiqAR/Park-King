@@ -1,36 +1,3 @@
-// function getRandomFloat(min, max) {
-//     return Math.random() * (max - min) + min;
-// }
-
-// function getRandomRating() {
-//     return getRandomFloat(1, 5).toFixed(1);
-// }
-
-// const names = ["City Park", "Nature Reserve", "Urban Oasis", "Sky Garden", "Meadow Park", "Lakefront Park", "Sunset Valley", "Green Haven", "Botanical Gardens", "Pine Grove"];
-// const places = ["City Center", "Suburb", "Downtown", "Riverside", "Mountain Ridge"];
-
-// const parkAreas = [];
-
-// for (let i = 0; i < 10; i++) {
-//     const randomName = names[Math.floor(Math.random() * names.length)];
-//     const randomPlace = places[Math.floor(Math.random() * places.length)];
-
-//     const parkObject = {
-//         name: randomName,
-//         area_id: i + 1,
-//         place: randomPlace,
-//         no_free_slots: Math.floor(Math.random() * 50) + 1,
-//         distance: getRandomFloat(1, 20).toFixed(2),
-//         coords: {
-//             latitude: getRandomFloat(-90, 90).toFixed(6),
-//             longitude: getRandomFloat(-180, 180).toFixed(6),
-//         },
-//         average_rating: getRandomRating()
-//     };
-
-//     parkAreas.push(parkObject);
-// }
-
 const parkAreas = [
     {
         name: 'Lakefront Park',

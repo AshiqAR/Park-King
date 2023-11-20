@@ -29,7 +29,7 @@ const BottomCarousel = (props) => {
                         style={{ backgroundColor: 'red', borderRadius: 10, padding: 5, margin: 10 }}
                         onPress={() => { handleCarouselClose() }}
                     >
-                        <Text style={{ color: 'white' }}>Close</Text>
+                        <Text style={{ color: 'white' }}>Cancel</Text>
                     </TouchableOpacity>
                 </View>
 

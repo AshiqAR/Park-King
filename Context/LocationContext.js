@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState } from 'react';
 import * as Location from "expo-location";
 import axios from 'axios';
 import {API_URL, API_KEY} from '@env';
+import {getSamePlaces} from '../assets/data/places';
 
 const LocationContext = createContext();
 
@@ -25,7 +26,6 @@ export const LocationProvider = ({ children }) => {
     // const [location, setCurrentLocation] = useState({"coords": {"accuracy": 14.954999923706055, "altitude": -20.700000762939453, "altitudeAccuracy": 2.138155698776245, "heading": 0, "latitude": 8.5460191, "longitude": 76.9039599, "speed": 0}, "mocked": false, "timestamp": 1699951332667});
     const [location, setCurrentLocation] = useState(null);
     const [fetchingLocation, setFetchingLocation] = useState(true);
-    const [place, setPlace] = useState(null);
 
     const reverseGeocode = async (location) => {
         try {
@@ -80,7 +80,7 @@ export const LocationProvider = ({ children }) => {
 
 
     return (
-        <LocationContext.Provider value={{ location, fetchingLocation, setFetchingLocation, updateCurrentLocation }}>
+        <LocationContext.Provider value={{ location, fetchingLocation, setFetchingLocation, updateCurrentLocation, getSamePlaces }}>
             {children}
         </LocationContext.Provider>
     );
