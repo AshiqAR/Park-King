@@ -6,9 +6,8 @@ import { useParkSpaceContext } from "../Context/ParkSpaceContext";
 import Loading from "../assets/components/Loading.js";
 import BottomCarousel from "../assets/components/BottomCarousel.js";
 import SearchBar from "../assets/components/SearchBar.js";
-import List from "../assets/components/List.js";
+import BottomDrawer from '../assets/components/BottomDrawer';
 
-import MyButton from "../assets/components/MyButton.js";
 import {
 	TextInput,
 	Animated,
@@ -19,28 +18,38 @@ import {
 } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
-	const { location, fetchingLocation, updateCurrentLocation, getSamePlaces } = useLocation();
-	const { index, parkAreas, searchForPlace, setSearchForPlace, searchPhrase, setSearchPhrase, getNearbyParkAreas, showCarousel } = useParkSpaceContext();
+	const { location, fetchingLocation, updateCurrentLocation } = useLocation();
+	const { showBottomSheet, setShowBottomSheet, index, parkAreas, searchForPlace, setSearchForPlace, searchPhrase, setSearchPhrase, getNearbyParkAreas, showCarousel, listData } = useParkSpaceContext();
+	const [selectedParkArea, setSelectedParkArea] = useState(null);
+
+	const handleMarkerClick = (parkArea) => {
+		setSelectedParkArea(parkArea);
+		setShowBottomSheet(true);
+	};
 
 	const handleLocateMeClick = () => {
 		loadCurrentLocation();
 	}
 
-	const CustomMarker = ({ coords, name, no_free_slots }) => {
+	const CustomMarker = (props) => {
+		const { parkArea } = props;
 		return (
 			<Marker
-				coordinate={{ latitude: coords.latitude, longitude: coords.longitude }}
-				title={name}
-				description={`${no_free_slots} slots available`}
-				image={require('../assets/images/parkSpace.png')}
-				style={{ width: 50, height: 50 }}
-			/>
+				coordinate={{ latitude: parkArea.coords.latitude, longitude: parkArea.coords.longitude }}
+				onPress={() => { handleMarkerClick(parkArea) }}
+				key={parkArea.area_id}
+				icon={require('../assets/images/parkSpace.png')}
+				style={{ justifyContent: 'center', alignItems: 'center' }}
+			>
+				<View style={{ marginTop: 25 }}>
+					{/* <Text>{parkArea.name.length > 5 ? `${parkArea.name.slice(0, 5)}...` : parkArea.name}</Text> */}
+					<Text style={{ fontWeight: 'bold', alignSelf: 'center' }}>{parkArea.name}</Text>
+				</View>
+			</Marker>
 		);
 	};
 
 	const mapRef = useRef(null);
-	// const latitudeDelta = desiredDistanceInMeters / 111000;
-	// const longitudeDelta = desiredDistanceInMeters / (111000 * Math.cos(latitude * Math.PI / 180));
 	const loadCurrentLocation = () => {
 		if (mapRef.current) {
 			mapRef.current.animateCamera(
@@ -134,58 +143,38 @@ const HomeScreen = ({ navigation }) => {
 							/>
 
 							{parkAreas.map((parkArea, i) => (
-								<CustomMarker key={i} coords={parkArea.coords} name={parkArea.name} no_free_slots={parkArea.no_free_slots} />
+								<CustomMarker key={i} parkArea={parkArea} />
 							))}
 						</MapView>
 
-						{/* {searchForPlace &&
-							// <List
-							// 	searchPhrase={searchPhrase}
-							// 	setClicked={setSearchForPlace}
-							// 	data={parkAreas}
-							// />
-							<View
-								style={{ position: 'absolute', bottom: 100, left: 0, zIndex: 5, height: 100, width: "100%", backgroundColor: "red" }}
-							>
-								<Text>Sample</Text>
-							</View>
-						} */}
-
-						{showCarousel ?
+						{!showBottomSheet && (showCarousel ?
 							<BottomCarousel
 								handleLocateMeClick={handleLocateMeClick}
 							/>
 							:
 							<View style={styles.bottomBar}>
-								{searchForPlace &&
-									<View
-										style={{ maxHeight: 300, width: "100%" ,flexDirection: 'column', justifyContent: 'flex-start', marginBottom: 30}}
+								<View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+									<TouchableOpacity
+										style={{ height: 40, width: "45%", backgroundColor: 'lightblue', alignItems: 'center', justifyContent: 'center', marginHorizontal: 15, marginVertical: 9, borderRadius: 15, shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 0, height: 2 }, shadowRadius: 3, elevation: 5 }}
+										onPress={() => getNearbyParkAreas(location)}
+										activeOpacity={0.5}
 									>
-										<List
-											searchPhrase={searchPhrase}
-											setClicked={setSearchForPlace}
-											data={getSamePlaces(searchPhrase, 5)}
-										/>
-										<TouchableOpacity
-											style={{marginVertical: 5, backgroundColor: 'lightblue', alignSelf: 'center', width: '100%', padding: 5, borderRadius: 10 }}
-											onPress={() => { getNearbyParkAreas(location) }}
-										>
-											<Text
-												style={{ color: 'green', fontSize: 17, fontWeight: "bold", textAlign: "center" }}
-											>
-												Parking Spaces Near Me
-											</Text>
-										</TouchableOpacity>
-
-									</View>
-								}
-								<SearchBar
-									clicked={searchForPlace}
-									setClicked={setSearchForPlace}
-									searchPhrase={searchPhrase}
-									setSearchPhrase={setSearchPhrase}
-								/>
+										<Text style={{fontSize: 17, fontWeight: 'bold', color: '#4A4A4A'}}>Nearby Park Spaces</Text>
+									</TouchableOpacity>
+									<TouchableOpacity
+										style={{ height: 40, width: "45%", backgroundColor: 'lightgreen', alignItems: 'center', justifyContent: 'center', marginHorizontal: 15, marginVertical: 9, borderRadius: 15, shadowColor: 'black', shadowOpacity: 0.5, shadowOffset: { width: 0, height: 2 }, shadowRadius: 3, elevation: 5 }}
+										onPress={() => navigation.navigate("SearchPlace")}
+										activeOpacity={0.5}
+									>
+										<Text style={{fontSize: 17, fontWeight: 'bold', color: '#4A4A4A'}}>Search Place</Text>
+									</TouchableOpacity>
+								</View>
 							</View>
+						)}
+						{showBottomSheet &&
+							<BottomDrawer
+								parkArea={selectedParkArea}
+							/>
 						}
 					</View>
 				</View>

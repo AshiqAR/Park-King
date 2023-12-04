@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from "react";
 import { ScrollView, Button, FlatList } from 'react-native';
-import {Picker} from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
 import { Icon } from '@rneui/themed';
 import MyButton from "../assets/components/MyButton.js";
 import * as DocumentPicker from 'expo-document-picker';
 import tw from 'twrnc'
 const plus_symbol = require('../assets/plus_icon.png');
+import { useAuth } from '../Context/AuthContext';
 
 
 import {
@@ -22,81 +23,67 @@ import {
   TextInput,
   Alert,
 } from "react-native";
-
-const details = [
-  {
-    number: 'KL-05-AS-1234',
-    model: 'Maruti Suzuki',
-    color: 'Red',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  },
-  {
-    number: 'TN-06-JK-5678',
-    model: 'Maruti Suzuki',
-    color: 'Green',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  },
-  {
-    number: 'KL-11-FZ-9012',
-    model: 'Mercedes Benz',
-    color: 'Black',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  },
-  {
-    number: 'TN-06-JK-5678',
-    model: 'Maruti Suzuki',
-    color: 'Green',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  },
-  {
-    number: 'TN-06-JK-5678',
-    model: 'Maruti Suzuki',
-    color: 'Green',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  },
-  {
-    number: 'TN-06-JK-5678',
-    model: 'Maruti Suzuki',
-    color: 'Green',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  },
-  {
-    number: 'TN-06-JK-5678',
-    model: 'Maruti Suzuki',
-    color: 'Green',
-    arrivalTime: '12:00 PM',
-    departureTime: '2:00 PM',
-    duration: '2 hours',
-  }
-]
+import { BACKEND_URL } from '@env';
 
 const DetailsPage = ({ navigation }) => {
+  const { user, setUser } = useAuth();
+  const details = user.vehicles;
   const [isModalVisible, setModalVisible] = useState(false);
-  const [vehicle, setVehicle] = useState({vehicleNumber: '', vehicleType: '', makeCompany: '', modelName: ''});
+  const [vehicle, setVehicle] = useState({ vehicleNumber: '', vehicleType: '', makeCompany: '', modelName: '' });
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
 
   const handleAddVehicle = () => {
-    console.log('Adding new vehicle with number:' + vehicle.vehicleNumber);
+    if (!vehicle.vehicleNumber || !vehicle.vehicleType || !vehicle.makeCompany || !vehicle.modelName) {
+      Alert.alert('Please fill all the fields', "All fields are mandatory");
+      return;
+    }
+    const url = BACKEND_URL;
+    const apiUrl = url + "/vehicleInfo";
+    const requestData = {
+      phonenumber: user.phonenumber,
+      vehicleNumber: vehicle.vehicleNumber,
+      model: vehicle.modelName,
+      make: vehicle.makeCompany,
+      type: vehicle.vehicleType
+    };
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(requestData),
+    })
+      .then((response) => {
+        if (response.status == 201) {
+          return response.json();
+        }
+        else {
+          Alert.alert("Adding Vehicle Details Failed");
+          return { success: "false" };
+        }
+      })
+      .then((data) => {
+        if (data.success != "false") {
+          Alert.alert("Success", "Vehicle details added successfully.");
+          setUser(data.userDetails);
+        }
+        else{
+          Alert.alert("Error", "Failed to add the new vehicle.");
+        }
+        setVehicle({ vehicleNumber: '', vehicleType: '', makeCompany: '', modelName: '' });
+      })
+      .catch((error) => {
+        Alert.alert("Error", "An error occurred while adding vehicle details.");
+      });
     toggleModal();
   };
 
   const handleInputChange = (key, formattedValue) => {
-    if(key==='vehicleNumber')
+    if (key === 'vehicleNumber')
       formattedValue = formattedValue.toUpperCase();
     setVehicle({ ...vehicle, [key]: formattedValue });
   }
@@ -114,10 +101,10 @@ const DetailsPage = ({ navigation }) => {
           data={details}
           renderItem={({ item }) => (
             <View style={tw.style(`flex flex-row justify-between items-center border-b border-[#B8C6DB] py-[24px] px-[21px] w-full`)}>
-              <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>{item.number}</Text>
+              <Text style={tw.style(`text-[#4E4D4D] text-[18px] font-medium`)}>{item.vehicleNumber}</Text>
               <View style={tw.style(`flex flex-col items-end`)}>
-                <Text style={tw.style(`text-[#4E4D4D] text-[12px] font-light`)}>{item.model}</Text>
-                <Text style={tw.style(`text-[#4E4D4D] text-[12px] font-light`)}>{item.arrivalTime}</Text>
+                <Text style={tw.style(`text-[#4E4D4D] text-[12px] font-light`)}>{item.make} : {item.model}</Text>
+                <Text style={tw.style(`text-[#4E4D4D] text-[12px] font-light`)}>{item.type}</Text>
               </View>
             </View>
           )}
@@ -162,13 +149,13 @@ const DetailsPage = ({ navigation }) => {
               <Picker.Item label="Two Wheeler" value="Two Wheeler" />
               <Picker.Item label="Three Wheeler" value="Three Wheeler" />
               <Picker.Item label="Four Wheeler" value="Four Wheeler" />
-              {/* Add more options as needed */}
             </Picker>
           </View>
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Make Company:</Text>
             <TextInput
               style={styles.input}
+              value={vehicle.makeCompany}
               placeholder="Enter Make Company"
               onChangeText={(value) => handleInputChange('makeCompany', value)}
             />
@@ -177,6 +164,7 @@ const DetailsPage = ({ navigation }) => {
             <Text style={styles.label}>Model Name:</Text>
             <TextInput
               style={styles.input}
+              value={vehicle.modelName}
               placeholder="Enter Model Name"
               onChangeText={(value) => handleInputChange('modelName', value)}
             />

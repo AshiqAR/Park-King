@@ -12,6 +12,7 @@ import HistoryPage from './screens/History';
 import DetailsPage from './screens/Details';
 import Loading from './assets/components/Loading';
 import SettingPage from './screens/Settings';
+import SearchPlaceScreen from './screens/SearchPlaceScreen';
 
 const AuthStack = createStackNavigator();
 
@@ -41,6 +42,7 @@ function UserStackScreen() {
                 >
                     {/* <UserStack.Screen name="Loading" component={Loading} /> */}
                     <UserStack.Screen name="Home" component={HomeScreen} />
+                    <UserStack.Screen name="SearchPlace" component={SearchPlaceScreen} />
                     <UserStack.Screen name="Profile" component={ProfilePage} />
                     <UserStack.Screen name="ParkOwner" component={OwnerPage} />
                     <UserStack.Screen name="History" component={HistoryPage} />

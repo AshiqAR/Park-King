@@ -1,11 +1,11 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import parkAreas from '../assets/data/parkAreas';
 
 const ParkSpaceContext = createContext();
 
 export const ParkSpaceDetailsProvider = ({ children }) => {
+    const [showBottomSheet, setShowBottomSheet] = useState(false);
     const [index, setIndex] = useState(null);
-    const [lookingForSpaces, setLookingForSpaces] = useState(false);
     const [showCarousel, setShowCarousel] = useState(false);
     const [searchForPlace, setSearchForPlace] = useState(false);
     const [searchPhrase, setSearchPhrase] = useState("");
@@ -23,7 +23,7 @@ export const ParkSpaceDetailsProvider = ({ children }) => {
     };
 
     return (
-        <ParkSpaceContext.Provider value={{parkAreas, index,showCarousel, setIndex, handleCarouselClose, searchForPlace, setSearchForPlace, searchPhrase, setSearchPhrase, getNearbyParkAreas }}>
+        <ParkSpaceContext.Provider value={{ showBottomSheet, setShowBottomSheet, parkAreas, index, showCarousel, setIndex, handleCarouselClose, searchForPlace, setSearchForPlace, searchPhrase, setSearchPhrase, getNearbyParkAreas }}>
             {children}
         </ParkSpaceContext.Provider>
     );

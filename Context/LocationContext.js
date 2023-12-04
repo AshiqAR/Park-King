@@ -1,8 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import * as Location from "expo-location";
 import axios from 'axios';
-import {API_URL, API_KEY} from '@env';
-import {getSamePlaces} from '../assets/data/places';
 
 const LocationContext = createContext();
 
@@ -80,7 +78,7 @@ export const LocationProvider = ({ children }) => {
 
 
     return (
-        <LocationContext.Provider value={{ location, fetchingLocation, setFetchingLocation, updateCurrentLocation, getSamePlaces }}>
+        <LocationContext.Provider value={{ location, fetchingLocation, setFetchingLocation, updateCurrentLocation }}>
             {children}
         </LocationContext.Provider>
     );

@@ -7,9 +7,9 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
         <View style={styles.container}>
             <View
                 style={
-                    clicked
+                    [clicked
                         ? styles.searchBar__clicked
-                        : styles.searchBar__unclicked
+                        : styles.searchBar__unclicked, styles.commonStyle]
                 }
             >
                 <Feather
@@ -20,30 +20,19 @@ const SearchBar = ({ clicked, searchPhrase, setSearchPhrase, setClicked }) => {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Search Place or Nearby Parking"
+                    placeholder="Search Place "
                     value={searchPhrase}
                     onChangeText={setSearchPhrase}
                     onFocus={() => {
                         setClicked(true);
                     }}
                 />
-                {clicked && (
-                    <Entypo name="cross" size={25} color="black" style={{ padding: 1 }} onPress={() => {
+                {searchPhrase!="" && (
+                    <Entypo name="cross" size={25} color="black" onPress={() => {
                         setSearchPhrase("")
                     }} />
                 )}
             </View>
-            {clicked && (
-                <TouchableOpacity
-                    onPress={() => {
-                        Keyboard.dismiss();
-                        setClicked(false);
-                    }}
-                    style={{ backgroundColor: 'tomato', padding: 5, borderRadius: 10, alignItems: 'center', justifyContent: 'center', marginHorizontal: 5}}
-                >
-                    <Text style={{fontWeight: 'bold'}}>Cancel</Text>
-                </TouchableOpacity>
-            )}
         </View>
     );
 };
@@ -52,35 +41,46 @@ export default SearchBar;
 // styles
 const styles = StyleSheet.create({
     container: {
-        margin: 10,
+        paddingHorizontal: 10,
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "row",
-        width: "100%",
+        marginVertical: 10,
     },
     searchBar__unclicked: {
-        padding: 5,
         flexDirection: "row",
-        width: "95%",
         backgroundColor: "#d9dbda",
         borderRadius: 15,
         alignSelf: 'center',
         alignItems: "center",
+        justifyContent: "flex-start",
     },
     searchBar__clicked: {
-        paddingVertical: 5,
-        paddingHorizontal: 10,
         flexDirection: "row",
-        width: "85%",
-        backgroundColor: "#d9dbda",
         borderRadius: 15,
         alignItems: "center",
-        justifyContent: "space-evenly",
+        justifyContent: "flex-start",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 0.5,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 0.5,
+        elevation: 1,
+    },
+    commonStyle: {
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        width: "100%",
+        backgroundColor: "#d9dbda",
+        borderWidth: 1,
+        borderColor: "#dfdbfa",
+        height: 50,
     },
     input: {
-        overflow: 'scroll',
-        fontSize: 18,
-        marginLeft: 10,
-        width: "90%",
+        fontSize: 20,
+        marginHorizontal: 10,
+        width: '85%',
     },
 });
